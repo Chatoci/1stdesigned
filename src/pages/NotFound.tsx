@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FiHome, FiArrowLeft, FiSearch, FiZap } from 'react-icons/fi';
+import { FiHome, FiArrowLeft, FiSearch } from 'react-icons/fi';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 const HomeIcon = FiHome as React.ComponentType<any>;
 const ArrowLeftIcon = FiArrowLeft as React.ComponentType<any>;
 const SearchIcon = FiSearch as React.ComponentType<any>;
-const ZapIcon = FiZap as React.ComponentType<any>;
 
 // Styled Components
 const NotFoundContainer = styled.div`

@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FiMail, FiPhone, FiMapPin, FiSend, FiUser, FiMessageSquare, FiFacebook } from 'react-icons/fi';
+import { FiPhone, FiFacebook } from 'react-icons/fi';
 import { FaFacebookMessenger } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useLanguage } from '../contexts/LanguageContext';
 
 // Type cast icons
-const MailIcon = FiMail as React.ComponentType<any>;
 const PhoneIcon = FiPhone as React.ComponentType<any>;
-const MapPinIcon = FiMapPin as React.ComponentType<any>;
-const SendIcon = FiSend as React.ComponentType<any>;
-const UserIcon = FiUser as React.ComponentType<any>;
-const MessageIcon = FiMessageSquare as React.ComponentType<any>;
 const FacebookIcon = FiFacebook as React.ComponentType<any>;
 const MessengerIcon = FaFacebookMessenger as React.ComponentType<any>;
 
@@ -79,30 +74,6 @@ const pulse = keyframes`
   }
   50% {
     transform: scale(1.05);
-  }
-`;
-
-const shimmer = keyframes`
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
-`;
-
-const bounce = keyframes`
-  0%, 20%, 53%, 80%, 100% {
-    transform: translate3d(0,0,0);
-  }
-  40%, 43% {
-    transform: translate3d(0, -30px, 0);
-  }
-  70% {
-    transform: translate3d(0, -15px, 0);
-  }
-  90% {
-    transform: translate3d(0, -4px, 0);
   }
 `;
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FiArrowRight, FiInstagram, FiDribbble, FiLinkedin, FiClock, FiHeart, FiMessageCircle, FiRefreshCw, FiX, FiStar } from 'react-icons/fi';
+import { FiArrowRight, FiInstagram, FiDribbble, FiClock, FiHeart, FiMessageCircle, FiX, FiStar } from 'react-icons/fi';
 import { FaBehance, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -14,13 +14,11 @@ const ArrowRightIcon = FiArrowRight as React.ComponentType<any>;
 const InstagramIcon = FiInstagram as React.ComponentType<any>;
 const BehanceIcon = FaBehance as React.ComponentType<any>;
 const DribbbleIcon = FiDribbble as React.ComponentType<any>;
-const LinkedInIcon = FiLinkedin as React.ComponentType<any>;
 const FacebookIcon = FaFacebook as React.ComponentType<any>;
 const WhatsAppIcon = FaWhatsapp as React.ComponentType<any>;
 const ClockIcon = FiClock as React.ComponentType<any>;
 const HeartIcon = FiHeart as React.ComponentType<any>;
 const MessageIcon = FiMessageCircle as React.ComponentType<any>;
-const RefreshIcon = FiRefreshCw as React.ComponentType<any>;
 const CloseIcon = FiX as React.ComponentType<any>;
 const StarIcon = FiStar as React.ComponentType<any>;
 
@@ -33,37 +31,6 @@ const fadeInUp = keyframes`
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const slideInLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const slideInRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
   }
 `;
 
@@ -458,67 +425,6 @@ const ShowcaseDesc = styled.p`
   margin-bottom: 0;
 `;
 
-const StatsSection = styled.section`
-  padding: 6rem 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  
-  @media (max-width: 768px) {
-    padding: 4rem 1rem;
-  }
-`;
-
-const StatsContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-`;
-
-const BlogStatItem = styled.div`
-  text-align: center;
-  
-  .stat-number {
-    font-size: 3rem;
-    font-weight: 900;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    
-    @media (max-width: 768px) {
-      font-size: 2.5rem;
-    }
-    
-    @media (max-width: 480px) {
-      font-size: 2rem;
-    }
-  }
-  
-  .stat-label {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    
-    @media (max-width: 768px) {
-      font-size: 0.9rem;
-    }
-  }
-`;
-
 const BlogSection = styled.section`
   padding: 6rem 2rem;
   background: rgba(255, 255, 255, 0.02);
@@ -744,35 +650,6 @@ const LoadingContainer = styled.div`
   padding: 3rem 0;
   color: rgba(255, 255, 255, 0.7);
   font-size: 1.1rem;
-`;
-
-const RefreshButton = styled.button`
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: 1rem;
-  backdrop-filter: blur(10px);
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-1px);
-  }
-  
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
 `;
 
 const BlogHeaderContainer = styled.div`
@@ -1313,11 +1190,10 @@ const ReviewStatItem = styled.div`
 const Home: React.FC = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
   const [selectedShowcase, setSelectedShowcase] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFullScreenOpen, setIsFullScreenOpen] = useState(false);
-  const { t, translations } = useLanguage();
+  const { t } = useLanguage();
 
   const fetchPosts = async () => {
     try {
@@ -1329,12 +1205,6 @@ const Home: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleRefresh = async () => {
-    setRefreshing(true);
-    await fetchPosts();
-    setRefreshing(false);
   };
 
   const handleShowcaseClick = (showcase: any) => {

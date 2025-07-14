@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { FiExternalLink, FiGithub, FiEye } from 'react-icons/fi';
+import { FiGithub, FiEye } from 'react-icons/fi';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useLanguage } from '../contexts/LanguageContext';
 
 // Type cast icons
-const ExternalLinkIcon = FiExternalLink as React.ComponentType<any>;
 const GithubIcon = FiGithub as React.ComponentType<any>;
 const EyeIcon = FiEye as React.ComponentType<any>;
 
@@ -322,63 +321,6 @@ const ProjectButton = styled.a`
     font-size: 0.85rem;
     justify-content: center;
     width: 100%;
-  }
-`;
-
-const StatsSection = styled.section`
-  padding: 4rem 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  
-  @media (max-width: 768px) {
-    padding: 3rem 1rem;
-  }
-`;
-
-const StatsContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-`;
-
-const StatItem = styled.div`
-  text-align: center;
-  
-  .stat-number {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    
-    @media (max-width: 768px) {
-      font-size: 2rem;
-    }
-  }
-  
-  .stat-label {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    
-    @media (max-width: 768px) {
-      font-size: 0.9rem;
-    }
   }
 `;
 

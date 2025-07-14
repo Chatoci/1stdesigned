@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiMail, FiPhone, FiMapPin, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
-import { SiAdobephotoshop, SiAdobeillustrator, SiAdobeindesign, SiFigma, SiCanva } from 'react-icons/si';
+import { SiAdobephotoshop, SiAdobeillustrator, SiAdobeindesign, SiAdobepremierepro, SiAdobeaftereffects, SiFigma, SiCanva } from 'react-icons/si';
 import { MdTextFields } from 'react-icons/md';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -18,7 +18,7 @@ const TwitterIcon = FiTwitter as React.ComponentType<any>;
 // Styled Components
 const AboutContainer = styled.div`
   min-height: 100vh;
-  background: rgb(6, 24, 0);
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0f1419 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   overflow: hidden;
@@ -393,7 +393,9 @@ const About: React.FC = () => {
     { name: "Adobe InDesign", level: 80, icon: SiAdobeindesign as React.ComponentType<any> },
     { name: "Figma", level: 85, icon: SiFigma as React.ComponentType<any> },
     { name: "Canva", level: 90, icon: SiCanva as React.ComponentType<any> },
-    { name: "Typography", level: 88, icon: MdTextFields as React.ComponentType<any> }
+    { name: "Typography", level: 88, icon: MdTextFields as React.ComponentType<any> },
+    { name: "Adobe Premiere Pro", level: 75, icon: SiAdobepremierepro as React.ComponentType<any> },
+    { name: "Adobe After Effects", level: 70, icon: SiAdobeaftereffects as React.ComponentType<any> }
   ];
 
   const experience = [

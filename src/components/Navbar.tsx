@@ -20,7 +20,7 @@ const WhatsAppIcon = FaWhatsapp as React.ComponentType<any>;
 // Styled Components
 const Header = styled.header`
   padding: 0.9rem 0;
-  background: rgba(6, 24, 0, 0.1);
+  background: linear-gradient(135deg, rgba(15, 20, 25, 0.9) 0%, rgba(26, 35, 50, 0.9) 50%, rgba(15, 20, 25, 0.9) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   position: fixed;
@@ -164,7 +164,7 @@ const MobileNav = styled.div<{ $isOpen: boolean }>`
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(6, 24, 0, 0.98);
+    background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0f1419 100%);
     backdrop-filter: blur(20px);
     z-index: 999;
     transform: ${props => props.$isOpen ? 'translateX(0)' : 'translateX(100%)'};

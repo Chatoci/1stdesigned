@@ -12,7 +12,7 @@ const EyeIcon = FiEye as React.ComponentType<any>;
 // Styled Components
 const WorkContainer = styled.div`
   min-height: 100vh;
-  background: rgb(6, 24, 0);
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0f1419 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   overflow: hidden;
@@ -186,9 +186,9 @@ const ProjectCard = styled.div<{ $delay?: number }>`
   }
 `;
 
-const ProjectImage = styled.div<{ bgColor: string }>`
+const ProjectImage = styled.div<{ bgColor: string; $hasImage?: boolean }>`
   height: 200px;
-  background: ${props => props.bgColor};
+  background: ${props => props.$hasImage ? 'transparent' : props.bgColor};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,8 +202,8 @@ const ProjectImage = styled.div<{ bgColor: string }>`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-    animation: shimmer 2s infinite;
+    background: ${props => props.$hasImage ? 'none' : 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)'};
+    animation: ${props => props.$hasImage ? 'none' : 'shimmer 2s infinite'};
   }
   
   .project-placeholder {
@@ -211,10 +211,18 @@ const ProjectImage = styled.div<{ bgColor: string }>`
     font-size: 1.5rem;
     font-weight: 600;
     z-index: 1;
+    display: ${props => props.$hasImage ? 'none' : 'block'};
     
     @media (max-width: 768px) {
       font-size: 1.25rem;
     }
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
   }
   
   @keyframes shimmer {
@@ -336,6 +344,7 @@ const Work: React.FC = () => {
       category: "web",
       tags: translations.work.projects.ecommerce.tags,
       bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      image: "/work/ecommerce.png",
       liveUrl: "#",
       githubUrl: "#"
     },
@@ -346,6 +355,7 @@ const Work: React.FC = () => {
       category: "mobile",
       tags: translations.work.projects.banking.tags,
       bgColor: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      image: "/work/mobile.png",
       liveUrl: "#",
       githubUrl: "#"
     },
@@ -356,6 +366,7 @@ const Work: React.FC = () => {
       category: "design",
       tags: translations.work.projects.designSystem.tags,
       bgColor: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      image: "/work/system.png",
       liveUrl: "#",
       githubUrl: "#"
     },
@@ -366,6 +377,7 @@ const Work: React.FC = () => {
       category: "web",
       tags: translations.work.projects.aiChat.tags,
       bgColor: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+      image: "/work/ai.png",
       liveUrl: "#",
       githubUrl: "#"
     },
@@ -376,6 +388,7 @@ const Work: React.FC = () => {
       category: "mobile",
       tags: translations.work.projects.fitness.tags,
       bgColor: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      image: "/work/fitness.png",
       liveUrl: "#",
       githubUrl: "#"
     },
@@ -386,6 +399,7 @@ const Work: React.FC = () => {
       category: "design",
       tags: translations.work.projects.portfolio.tags,
       bgColor: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+      image: "/work/portfolio.png",
       liveUrl: "#",
       githubUrl: "#"
     }
@@ -437,7 +451,8 @@ const Work: React.FC = () => {
             <ProjectsGrid>
               {filteredProjects.map((project, idx) => (
                 <ProjectCard key={project.id} $delay={idx * 0.12}>
-                  <ProjectImage bgColor={project.bgColor}>
+                  <ProjectImage bgColor={project.bgColor} $hasImage={!!project.image}>
+                    {project.image && <img src={project.image} alt={project.title} />}
                     <div className="project-placeholder">
                       {project.title}
                     </div>

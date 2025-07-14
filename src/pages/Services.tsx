@@ -7,7 +7,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 // Styled Components
 const ServicesContainer = styled.div`
   min-height: 100vh;
-  background: rgb(6, 24, 0);
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0f1419 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   overflow: hidden;

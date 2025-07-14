@@ -51,7 +51,7 @@ const float = keyframes`
 // Styled Components
 const HomeContainer = styled.div`
   min-height: 100vh;
-  background: rgb(6, 24, 0);
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0f1419 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   overflow: hidden;
@@ -81,10 +81,10 @@ const ChromaGrid = styled.div`
   
   @keyframes gridMove {
     0% {
-      transform: translate(0, 0);
+      transform: translate(0, -50px);
     }
     100% {
-      transform: translate(50px, 50px);
+      transform: translate(0, 0);
     }
   }
 `;
@@ -423,6 +423,35 @@ const ShowcaseDesc = styled.p`
   color: rgba(255,255,255,0.8);
   font-size: 0.95rem;
   margin-bottom: 0;
+`;
+
+const ShowcaseViewMoreButton = styled.button`
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 3rem auto 0;
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9rem;
+  }
 `;
 
 const BlogSection = styled.section`
@@ -1337,6 +1366,10 @@ const Home: React.FC = () => {
                 </ShowcaseCard>
               ))}
             </ShowcaseGrid>
+            <ShowcaseViewMoreButton onClick={() => window.open('https://www.behance.net/ace_likhith1', '_blank')}>
+              View More on Behance
+              <BehanceIcon size={20} />
+            </ShowcaseViewMoreButton>
           </ShowcaseContainer>
         </ShowcaseSection>
 
@@ -1415,10 +1448,6 @@ const Home: React.FC = () => {
                   {t('blog.subtitle')} <a href="https://www.facebook.com/profile.php?id=61559057724990" target="_blank" rel="noopener noreferrer" style={{ color: '#667eea', textDecoration: 'none' }}>{t('blog.facebookPage')}</a>
                 </p>
               </BlogHeader>
-              {/* <RefreshButton onClick={handleRefresh} disabled={refreshing}>
-                <RefreshIcon size={16} style={{ animation: refreshing ? 'spin 1s linear infinite' : 'none' }} />
-                {refreshing ? 'Loading...' : 'Refresh'}
-              </RefreshButton> */}
             </BlogHeaderContainer>
             
             {loading ? (
@@ -1431,7 +1460,7 @@ const Home: React.FC = () => {
                   {blogPosts.map((post) => (
                     <BlogCard key={post.id}>
                       <BlogImage>
-                        {post.image.startsWith('http') ? (
+                        {post.image.startsWith('http') || post.image.startsWith('/') ? (
                           <img 
                             src={post.image} 
                             alt={post.title}

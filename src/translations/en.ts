@@ -170,6 +170,25 @@ export const en = {
   services: {
     title: "Pricing Plans",
     subtitle: "Choose the perfect plan for your design project. Transparent pricing, clear deliverables, and professional results for every budget.",
+    stepper: {
+      title: "How It Works",
+      step1: {
+        title: "Choose Package",
+        description: "Select the perfect plan for your project"
+      },
+      step2: {
+        title: "Payment",
+        description: "Secure payment through our platform"
+      },
+      step3: {
+        title: "Wait for Work",
+        description: "We'll create your design professionally"
+      },
+      step4: {
+        title: "Success",
+        description: "Receive your completed project"
+      }
+    },
     plans: {
       artwork: {
         title: "Artwork",

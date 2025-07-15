@@ -28,10 +28,10 @@ const ChromaGrid = styled.div`
   
   @keyframes gridMove {
     0% {
-      transform: translate(0, 0);
+      transform: translate(0, -50px);
     }
     100% {
-      transform: translate(50px, 50px);
+      transform: translate(0, 0);
     }
   }
 `;
@@ -86,6 +86,129 @@ const ServicesHeader = styled.div`
     @media (max-width: 768px) {
       font-size: 1rem;
     }
+  }
+`;
+
+// Stepper Components
+const StepperContainer = styled.div`
+  margin-bottom: 4rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+`;
+
+const StepperTitle = styled.h2`
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+`;
+
+const StepperSteps = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    &::before {
+      display: none;
+    }
+  }
+`;
+
+const StepperStep = styled.div<{ $active?: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  
+  @media (max-width: 768px) {
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+  }
+`;
+
+const StepCircle = styled.div<{ $active?: boolean }>`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: ${props => props.$active ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(255, 255, 255, 0.1)'};
+  border: 2px solid ${props => props.$active ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.2)'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: ${props => props.$active ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'};
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+`;
+
+const StepContent = styled.div`
+  text-align: center;
+  
+  @media (max-width: 768px) {
+    text-align: left;
+    flex: 1;
+  }
+`;
+
+const StepTitle = styled.h3<{ $active?: boolean }>`
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${props => props.$active ? '#ffffff' : 'rgba(255, 255, 255, 0.8)'};
+  margin-bottom: 0.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+`;
+
+const StepDescription = styled.p<{ $active?: boolean }>`
+  font-size: 0.85rem;
+  color: ${props => props.$active ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.6)'};
+  margin: 0;
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -303,6 +426,40 @@ const Services: React.FC = () => {
               <h1>{t('services.title')}</h1>
               <p>{t('services.subtitle')}</p>
             </ServicesHeader>
+
+            <StepperContainer>
+              <StepperTitle>{t('services.stepper.title')}</StepperTitle>
+              <StepperSteps>
+                <StepperStep>
+                  <StepCircle $active={true}>1</StepCircle>
+                  <StepContent>
+                    <StepTitle $active={true}>{t('services.stepper.step1.title')}</StepTitle>
+                    <StepDescription $active={true}>{t('services.stepper.step1.description')}</StepDescription>
+                  </StepContent>
+                </StepperStep>
+                <StepperStep>
+                  <StepCircle $active={false}>2</StepCircle>
+                  <StepContent>
+                    <StepTitle $active={false}>{t('services.stepper.step2.title')}</StepTitle>
+                    <StepDescription $active={false}>{t('services.stepper.step2.description')}</StepDescription>
+                  </StepContent>
+                </StepperStep>
+                <StepperStep>
+                  <StepCircle $active={false}>3</StepCircle>
+                  <StepContent>
+                    <StepTitle $active={false}>{t('services.stepper.step3.title')}</StepTitle>
+                    <StepDescription $active={false}>{t('services.stepper.step3.description')}</StepDescription>
+                  </StepContent>
+                </StepperStep>
+                <StepperStep>
+                  <StepCircle $active={false}>4</StepCircle>
+                  <StepContent>
+                    <StepTitle $active={false}>{t('services.stepper.step4.title')}</StepTitle>
+                    <StepDescription $active={false}>{t('services.stepper.step4.description')}</StepDescription>
+                  </StepContent>
+                </StepperStep>
+              </StepperSteps>
+            </StepperContainer>
 
             <PricingGrid>
               {pricingPlans.map((plan, index) => (

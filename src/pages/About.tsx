@@ -39,10 +39,10 @@ const ChromaGrid = styled.div`
   
   @keyframes gridMove {
     0% {
-      transform: translate(0, 0);
+      transform: translate(0, -50px);
     }
     100% {
-      transform: translate(50px, 50px);
+      transform: translate(0, 0);
     }
   }
 `;

@@ -48,6 +48,15 @@ const float = keyframes`
   50% { transform: translateY(-10px); }
 `;
 
+const marquee = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+`;
+
 // Styled Components
 const HomeContainer = styled.div`
   min-height: 100vh;
@@ -317,8 +326,6 @@ const HeroImage = styled.div`
 
 const ShowcaseSection = styled.section`
   padding: 6rem 2rem 4rem;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(8px);
   @media (max-width: 768px) {
     padding: 4rem 1rem 2rem;
   }
@@ -456,7 +463,6 @@ const ShowcaseViewMoreButton = styled.button`
 
 const BlogSection = styled.section`
   padding: 6rem 2rem;
-  background: rgba(255, 255, 255, 0.02);
   
   @media (max-width: 768px) {
     padding: 4rem 1rem;
@@ -876,6 +882,94 @@ const FullScreenCloseButton = styled.button`
   }
 `;
 
+// Popup Components
+const PopupOverlay = styled.div<{ isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: ${props => props.isOpen ? 1 : 0};
+  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+  transition: all 0.3s ease;
+  padding: 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
+
+const PopupContent = styled.div<{ isOpen: boolean }>`
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+  transform: ${props => props.isOpen ? 'scale(1)' : 'scale(0.9)'};
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+`;
+
+const PopupCloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+  }
+`;
+
+const PopupImage = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 20px;
+    
+    @media (max-width: 768px) {
+      border-radius: 16px;
+    }
+  }
+`;
+
 const ModalBody = styled.div`
   padding: 2rem;
   
@@ -1015,7 +1109,6 @@ const showcaseData = [
 // Customer Review Section Styled Components
 const CustomerReviewSection = styled.section`
   padding: 6rem 2rem;
-  background: rgba(255, 255, 255, 0.02);
   position: relative;
   
   @media (max-width: 768px) {
@@ -1216,12 +1309,103 @@ const ReviewStatItem = styled.div`
   }
 `;
 
+const MarqueeSection = styled.section`
+  padding: 2rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+`;
+
+const MarqueeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  animation: ${marquee} 30s linear infinite;
+  white-space: nowrap;
+  
+  @media (max-width: 768px) {
+    gap: 2rem;
+    animation-duration: 20s;
+  }
+`;
+
+const MarqueeLogo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover img {
+    opacity: 1;
+  }
+  
+  @media (max-width: 768px) {
+    min-width: 80px;
+    height: 40px;
+    padding: 0.25rem;
+  }
+`;
+
+const MarqueeWrapper = styled.div`
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(15, 20, 25, 1), transparent);
+  }
+  
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(15, 20, 25, 1), transparent);
+  }
+`;
+
 const Home: React.FC = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedShowcase, setSelectedShowcase] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFullScreenOpen, setIsFullScreenOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(true);
   const { t } = useLanguage();
 
   const fetchPosts = async () => {
@@ -1252,6 +1436,10 @@ const Home: React.FC = () => {
 
   const closeFullScreen = () => {
     setIsFullScreenOpen(false);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
   };
 
   const scrollToShowcase = () => {
@@ -1347,6 +1535,68 @@ const Home: React.FC = () => {
           </HeroContent>
         </HeroSection>
 
+        <MarqueeSection>
+          <MarqueeWrapper>
+            <MarqueeContainer>
+              <MarqueeLogo>
+                <img src="/cus_logo/jing.png" alt="Jing" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/wulianye.png" alt="Wulianye" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/haier.png" alt="Haier" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/huawei.png" alt="Huawei" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/tecno.png" alt="Tecno" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/gowei.png" alt="Gowei" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/yadea.png" alt="Yadea" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/xinyue.png" alt="Xinyue" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/kingmaker.png" alt="Kingmaker" />
+              </MarqueeLogo>
+              {/* Duplicate logos for seamless scrolling */}
+              <MarqueeLogo>
+                <img src="/cus_logo/jing.png" alt="Jing" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/wulianye.png" alt="Wulianye" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/haier.png" alt="Haier" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/huawei.png" alt="Huawei" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/tecno.png" alt="Tecno" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/gowei.png" alt="Gowei" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/yadea.png" alt="Yadea" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/xinyue.png" alt="Xinyue" />
+              </MarqueeLogo>
+              <MarqueeLogo>
+                <img src="/cus_logo/kingmaker.png" alt="Kingmaker" />
+              </MarqueeLogo>
+            </MarqueeContainer>
+          </MarqueeWrapper>
+        </MarqueeSection>
+
         <ShowcaseSection id="showcase-section">
           <ShowcaseContainer>
             <ShowcaseHeader>
@@ -1438,6 +1688,18 @@ const Home: React.FC = () => {
             )}
           </FullScreenImage>
         </FullScreenOverlay>
+
+        {/* Popup */}
+        <PopupOverlay isOpen={isPopupOpen} onClick={closePopup}>
+          <PopupContent isOpen={isPopupOpen} onClick={(e) => e.stopPropagation()}>
+            <PopupCloseButton onClick={closePopup}>
+              <CloseIcon size={20} />
+            </PopupCloseButton>
+            <PopupImage>
+              <img src="/images/popup.png" alt="Popup" />
+            </PopupImage>
+          </PopupContent>
+        </PopupOverlay>
 
         <BlogSection>
           <BlogContainer>

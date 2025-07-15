@@ -19,10 +19,10 @@ const float = keyframes`
 
 const gridMove = keyframes`
   0% {
-    transform: translate(0, 0);
+    transform: translate(0, -50px);
   }
   100% {
-    transform: translate(50px, 50px);
+    transform: translate(0, 0);
   }
 `;
 

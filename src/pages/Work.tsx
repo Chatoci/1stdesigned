@@ -33,10 +33,10 @@ const ChromaGrid = styled.div`
   
   @keyframes gridMove {
     0% {
-      transform: translate(0, 0);
+      transform: translate(0, -50px);
     }
     100% {
-      transform: translate(50px, 50px);
+      transform: translate(0, 0);
     }
   }
 `;
@@ -332,6 +332,228 @@ const ProjectButton = styled.a`
   }
 `;
 
+const VideoMotionSection = styled.section`
+  padding: 6rem 2rem 4rem;
+  
+  @media (max-width: 768px) {
+    padding: 4rem 1rem 2rem;
+  }
+`;
+
+const VideoMotionContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const VideoMotionHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+  
+  h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 2rem;
+    }
+  }
+  
+  p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+`;
+
+const VideoMotionGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const VideoMotionCard = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  @media (max-width: 768px) {
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+`;
+
+const VideoMotionVideo = styled.div`
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    height: 200px;
+    
+    .play-button {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+    }
+  }
+`;
+
+const VideoMotionContent = styled.div`
+  padding: 1.5rem;
+`;
+
+const VideoMotionTitle = styled.h3`
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+`;
+
+const VideoMotionDescription = styled.p`
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+`;
+
+const VideoMotionTags = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+`;
+
+const VideoMotionTag = styled.span`
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+`;
+
+const VideoMotionActions = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+`;
+
+const VideoMotionButton = styled.a`
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  justify-content: center;
+  width: 100%;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+`;
+
 const Work: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const { t, translations } = useLanguage();
@@ -409,6 +631,40 @@ const Work: React.FC = () => {
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
+  // Video Motion data
+  const videoMotionData = [
+    {
+      id: 1,
+      title: "Tissue Motion Graphics",
+      description: "Dynamic motion graphics for tissue product campaign.",
+      video: "/videos/product-launch.mp4",
+      thumbnail: "/motion/tissue.jpg",
+      tags: ["After Effects", "Motion Graphics", "Product"],
+      duration: "2:30",
+      category: "Commercial"
+    },
+    {
+      id: 2,
+      title: "First Place Motion",
+      description: "Animated motion graphics for first place achievement.",
+      video: "/videos/brand-motion.mp4",
+      thumbnail: "/motion/1st.jpg",
+      tags: ["Logo Animation", "Motion Graphics"],
+      duration: "1:45",
+      category: "Branding"
+    },
+    {
+      id: 3,
+      title: "Video Motion Content",
+      description: "Professional video motion content and animations.",
+      video: "  ",
+      thumbnail: "/motion/Vdo.jpg",
+      tags: ["Video Motion", "Animation", "Professional"],
+      duration: "0:30",
+      category: "Social"
+    }
+  ];
+
   return (
     <WorkContainer>
       <ChromaGrid />
@@ -482,6 +738,91 @@ const Work: React.FC = () => {
           </WorkContainerInner>
         </WorkSection>
 
+        <VideoMotionSection>
+          <VideoMotionContainer>
+            <VideoMotionHeader>
+              <h2>Video Motion</h2>
+              <p>Explore our dynamic motion graphics and video animations that bring brands to life with engaging visual storytelling.</p>
+            </VideoMotionHeader>
+            
+            <VideoMotionGrid>
+              {videoMotionData.map((video) => (
+                <VideoMotionCard key={video.id}>
+                  <VideoMotionVideo>
+                    {video.video.includes('facebook.com/plugins/video.php') ? (
+                      <iframe
+                        src={video.video}
+                        title={video.title}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 'none', overflow: 'hidden' }}
+                        scrolling="no"
+                        frameBorder="0"
+                        allowFullScreen={true}
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      />
+                    ) : video.video.startsWith('http') ? (
+                      <iframe
+                        src={video.video}
+                        title={video.title}
+                        width="100%"
+                        height="100%"
+                        frameBorder="0"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <video 
+                        src={video.video} 
+                        poster={video.thumbnail}
+                        muted
+                        loop
+                      />
+                    )}
+                    <div className="play-button">▶</div>
+                  </VideoMotionVideo>
+                  <VideoMotionContent>
+                    <VideoMotionTitle>{video.title}</VideoMotionTitle>
+                    <VideoMotionDescription>{video.description}</VideoMotionDescription>
+                    <VideoMotionTags>
+                      {video.tags.map((tag, index) => (
+                        <VideoMotionTag key={index}>{tag}</VideoMotionTag>
+                      ))}
+                    </VideoMotionTags>
+                    <VideoMotionActions>
+                      <VideoMotionButton 
+                        href={video.video} 
+                        target="_blank"
+                      >
+                        Watch Full Video
+                      </VideoMotionButton>
+                      <VideoMotionButton 
+                        href="https://wa.me/+8562059991574" 
+                        target="_blank"
+                      >
+                        Discuss Project
+                      </VideoMotionButton>
+                    </VideoMotionActions>
+                  </VideoMotionContent>
+                </VideoMotionCard>
+              ))}
+            </VideoMotionGrid>
+            
+            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+              <VideoMotionButton 
+                href="https://www.facebook.com/profile.php?id=61559057724990&sk=reels_tab" 
+                target="_blank"
+                style={{ 
+                  maxWidth: '200px', 
+                  margin: '0 auto',
+                  fontSize: '1rem',
+                  padding: '1rem 1rem'
+                }}
+              >
+                View More
+              </VideoMotionButton>
+            </div>
+          </VideoMotionContainer>
+        </VideoMotionSection>
         <Footer />
       </ContentWrapper>
     </WorkContainer>

@@ -4,6 +4,8 @@ import { FiPhone, FiFacebook } from 'react-icons/fi';
 import { FaFacebookMessenger } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PageSEO from '../components/PageSEO';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 
 // Type cast icons
@@ -588,6 +590,8 @@ const Contact: React.FC = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { t } = useLanguage();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -634,187 +638,195 @@ I'm interested in discussing a project with you.`;
   };
 
   return (
-    <ContactContainer>
-      <ChromaGrid />
-      <FloatingParticles />
-      <Navbar />
-      <Content>
-        <Header>
-          <Title>{t('contact.title')}</Title>
-          <Subtitle>{t('contact.subtitle')}</Subtitle>
-        </Header>
+    <>
+      <PageSEO
+        title="Contact"
+        description="Get in touch for your next project. Contact me for web development, design services, or creative collaborations. Let's discuss how I can help bring your ideas to life."
+        keywords="contact, get in touch, web development, design services, project inquiry, collaboration, portfolio contact"
+        image="/og-contact.jpg"
+      />
+      <ContactContainer>
+        <ChromaGrid />
+        <FloatingParticles />
+        <Navbar />
+        <Content>
+          <Header>
+            <Title>{t('contact.title')}</Title>
+            <Subtitle>{t('contact.subtitle')}</Subtitle>
+          </Header>
 
-        <ContactGrid>
-          <ContactForm>
-            <FormTitle>{t('contact.form.title')}</FormTitle>
-            <form onSubmit={handleSubmit}>
-              <FormGroup>
-                <Label htmlFor="name">{t('contact.form.name')}</Label>
-                <Input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder={t('contact.form.namePlaceholder')}
-                  required
-                />
-              </FormGroup>
-              
-              <FormGroup>
-                <Label htmlFor="email">{t('contact.form.email')}</Label>
-                <Input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder={t('contact.form.emailPlaceholder')}
-                  required
-                />
-              </FormGroup>
-              
-              <FormGroup>
-                <Label htmlFor="subject">{t('contact.form.subject')}</Label>
-                <Input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  placeholder={t('contact.form.subjectPlaceholder')}
-                  required
-                />
-              </FormGroup>
-              
-              <FormGroup>
-                <Label htmlFor="message">{t('contact.form.message')}</Label>
-                <TextArea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder={t('contact.form.messagePlaceholder')}
-                  required
-                />
-              </FormGroup>
-              
-              <SubmitButton type="submit">
-                <MessengerIcon size={18} />
-                {t('contact.form.submit')}
-              </SubmitButton>
-            </form>
-          </ContactForm>
+          <ContactGrid>
+            <ContactForm>
+              <FormTitle>{t('contact.form.title')}</FormTitle>
+              <form onSubmit={handleSubmit}>
+                <FormGroup>
+                  <Label htmlFor="name">{t('contact.form.name')}</Label>
+                  <Input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder={t('contact.form.namePlaceholder')}
+                    required
+                  />
+                </FormGroup>
+                
+                <FormGroup>
+                  <Label htmlFor="email">{t('contact.form.email')}</Label>
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder={t('contact.form.emailPlaceholder')}
+                    required
+                  />
+                </FormGroup>
+                
+                <FormGroup>
+                  <Label htmlFor="subject">{t('contact.form.subject')}</Label>
+                  <Input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    placeholder={t('contact.form.subjectPlaceholder')}
+                    required
+                  />
+                </FormGroup>
+                
+                <FormGroup>
+                  <Label htmlFor="message">{t('contact.form.message')}</Label>
+                  <TextArea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder={t('contact.form.messagePlaceholder')}
+                    required
+                  />
+                </FormGroup>
+                
+                <SubmitButton type="submit">
+                  <MessengerIcon size={18} />
+                  {t('contact.form.submit')}
+                </SubmitButton>
+              </form>
+            </ContactForm>
 
-          <ContactInfo>
-            <InfoTitle>{t('contact.info.title')}</InfoTitle>
-            <ContactList>
-              <ContactItem>
-                <ContactIcon>
-                  <MessengerIcon size={20} />
-                </ContactIcon>
-                <ContactDetails>
-                  <h3>{t('contact.info.messenger.title')}</h3>
-                  <p>{t('contact.info.messenger.description')}</p>
-                  <button 
-                    onClick={openMessenger}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      color: 'white',
-                      padding: '0.5rem 1rem',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      marginTop: '0.5rem',
-                      fontSize: '0.9rem',
-                      transition: 'all 0.2s ease'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    {t('contact.info.messenger.button')}
-                  </button>
-                </ContactDetails>
-              </ContactItem>
-              
-              <ContactItem>
-                <ContactIcon>
-                  <FacebookIcon size={20} />
-                </ContactIcon>
-                <ContactDetails>
-                  <h3>{t('contact.info.facebook.title')}</h3>
-                  <p>{t('contact.info.facebook.description')}</p>
-                  <a 
-                    href="https://www.facebook.com/profile.php?id=61559057724990" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    style={{
-                      color: '#667eea',
-                      textDecoration: 'none',
-                      fontSize: '0.9rem',
-                      marginTop: '0.5rem',
-                      display: 'inline-block'
-                    }}
-                  >
-                    {t('contact.info.facebook.link')}
-                  </a>
-                </ContactDetails>
-              </ContactItem>
-              
-              <ContactItem>
-                <ContactIcon>
-                  <PhoneIcon size={20} />
-                </ContactIcon>
-                <ContactDetails>
-                  <h3>{t('contact.info.whatsapp.title')}</h3>
-                  <p>{t('contact.info.whatsapp.description')}</p>
-                  <a 
-                    href="https://wa.me/+8562059991574" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    style={{
-                      color: '#25D366',
-                      textDecoration: 'none',
-                      fontSize: '0.9rem',
-                      marginTop: '0.5rem',
-                      display: 'inline-block'
-                    }}
-                  >
-                    {t('contact.info.whatsapp.link')}
-                  </a>
-                </ContactDetails>
-              </ContactItem>
-            </ContactList>
-          </ContactInfo>
-        </ContactGrid>
+            <ContactInfo>
+              <InfoTitle>{t('contact.info.title')}</InfoTitle>
+              <ContactList>
+                <ContactItem>
+                  <ContactIcon>
+                    <MessengerIcon size={20} />
+                  </ContactIcon>
+                  <ContactDetails>
+                    <h3>{t('contact.info.messenger.title')}</h3>
+                    <p>{t('contact.info.messenger.description')}</p>
+                    <button 
+                      onClick={openMessenger}
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        color: 'white',
+                        padding: '0.5rem 1rem',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        marginTop: '0.5rem',
+                        fontSize: '0.9rem',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}
+                    >
+                      {t('contact.info.messenger.button')}
+                    </button>
+                  </ContactDetails>
+                </ContactItem>
+                
+                <ContactItem>
+                  <ContactIcon>
+                    <FacebookIcon size={20} />
+                  </ContactIcon>
+                  <ContactDetails>
+                    <h3>{t('contact.info.facebook.title')}</h3>
+                    <p>{t('contact.info.facebook.description')}</p>
+                    <a 
+                      href="https://www.facebook.com/profile.php?id=61559057724990" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{
+                        color: '#667eea',
+                        textDecoration: 'none',
+                        fontSize: '0.9rem',
+                        marginTop: '0.5rem',
+                        display: 'inline-block'
+                      }}
+                    >
+                      {t('contact.info.facebook.link')}
+                    </a>
+                  </ContactDetails>
+                </ContactItem>
+                
+                <ContactItem>
+                  <ContactIcon>
+                    <PhoneIcon size={20} />
+                  </ContactIcon>
+                  <ContactDetails>
+                    <h3>{t('contact.info.whatsapp.title')}</h3>
+                    <p>{t('contact.info.whatsapp.description')}</p>
+                    <a 
+                      href="https://wa.me/+8562059991574" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{
+                        color: '#25D366',
+                        textDecoration: 'none',
+                        fontSize: '0.9rem',
+                        marginTop: '0.5rem',
+                        display: 'inline-block'
+                      }}
+                    >
+                      {t('contact.info.whatsapp.link')}
+                    </a>
+                  </ContactDetails>
+                </ContactItem>
+              </ContactList>
+            </ContactInfo>
+          </ContactGrid>
 
-        <StatsSection>
-          <StatCard>
-            <StatNumber>50+</StatNumber>
-            <StatLabel>{t('contact.stats.projectsCompleted')}</StatLabel>
-          </StatCard>
-          <StatCard>
-            <StatNumber>24h</StatNumber>
-            <StatLabel>{t('contact.stats.responseTime')}</StatLabel>
-          </StatCard>
-          <StatCard>
-            <StatNumber>100%</StatNumber>
-            <StatLabel>{t('contact.stats.clientSatisfaction')}</StatLabel>
-          </StatCard>
-          <StatCard>
-            <StatNumber>5+</StatNumber>
-            <StatLabel>{t('contact.stats.yearsExperience')}</StatLabel>
-          </StatCard>
-        </StatsSection>
-      </Content>
-      <Footer />
-    </ContactContainer>
+          <StatsSection>
+            <StatCard>
+              <StatNumber>50+</StatNumber>
+              <StatLabel>{t('contact.stats.projectsCompleted')}</StatLabel>
+            </StatCard>
+            <StatCard>
+              <StatNumber>24h</StatNumber>
+              <StatLabel>{t('contact.stats.responseTime')}</StatLabel>
+            </StatCard>
+            <StatCard>
+              <StatNumber>100%</StatNumber>
+              <StatLabel>{t('contact.stats.clientSatisfaction')}</StatLabel>
+            </StatCard>
+            <StatCard>
+              <StatNumber>5+</StatNumber>
+              <StatLabel>{t('contact.stats.yearsExperience')}</StatLabel>
+            </StatCard>
+          </StatsSection>
+        </Content>
+        <Footer />
+      </ContactContainer>
+    </>
   );
 };
 

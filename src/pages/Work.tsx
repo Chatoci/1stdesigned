@@ -3,6 +3,7 @@ import styled, { keyframes, css } from 'styled-components';
 import { FiGithub, FiEye } from 'react-icons/fi';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PageSEO from '../components/PageSEO';
 import { useLanguage } from '../contexts/LanguageContext';
 
 // Type cast icons
@@ -554,8 +555,109 @@ const VideoMotionButton = styled.a`
   }
 `;
 
+const PackagingSection = styled.section`
+  padding: 6rem 2rem 4rem;
+  
+  @media (max-width: 768px) {
+    padding: 4rem 1rem 2rem;
+  }
+`;
+
+const PackagingContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const PackagingHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+  
+  h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 2rem;
+    }
+  }
+  
+  p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+`;
+
+const PackagingGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+`;
+
+const PackagingCard = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  aspect-ratio: 1;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  @media (max-width: 768px) {
+    &:hover {
+      transform: translateY(-4px);
+    }
+    border-radius: 12px;
+  }
+`;
+
+const PackagingImage = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover img {
+    transform: scale(1.05);
+  }
+`;
+
 const Work: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedProject, setSelectedProject] = useState<any>(null);
   const { t, translations } = useLanguage();
 
   const projects = [
@@ -665,167 +767,243 @@ const Work: React.FC = () => {
     }
   ];
 
+  // Packaging Design data
+  const packagingData = [
+    {
+      id: 1,
+      image: "/packaging/packaging1.jpg",
+      alt: "Product Packaging Design 1"
+    },
+    {
+      id: 2,
+      image: "/packaging/packaging2.jpg",
+      alt: "Product Packaging Design 2"
+    },
+    {
+      id: 3,
+      image: "/packaging/packaging3.jpg",
+      alt: "Product Packaging Design 3"
+    },
+    {
+      id: 4,
+      image: "/packaging/packaging4.jpg",
+      alt: "Product Packaging Design 4"
+    },
+    {
+      id: 5,
+      image: "/packaging/packaging5.jpg",
+      alt: "Product Packaging Design 5"
+    },
+    {
+      id: 6,
+      image: "/packaging/packaging6.jpg",
+      alt: "Product Packaging Design 6"
+    }
+  ];
+
   return (
-    <WorkContainer>
-      <ChromaGrid />
-      <ContentWrapper>
-        <Navbar />
-        <WorkSection>
-          <WorkContainerInner>
-            <WorkHeader>
-              <h1>{t('work.title')}</h1>
-              <p>{t('work.subtitle')}</p>
-            </WorkHeader>
+    <>
+      <PageSEO
+        title="Work"
+        description="Explore my portfolio of creative projects, web applications, and design work. From React applications to 3D experiences, discover innovative solutions that showcase technical expertise and creative vision."
+        keywords="portfolio projects, web development, react projects, design work, creative projects, 3D experiences, digital solutions"
+        image="/og-work.jpg"
+      />
+      <WorkContainer>
+        <ChromaGrid />
+        <ContentWrapper>
+          <Navbar />
+          <WorkSection>
+            <WorkContainerInner>
+              <WorkHeader>
+                <h1>{t('work.title')}</h1>
+                <p>{t('work.subtitle')}</p>
+              </WorkHeader>
 
-            <FilterTabs>
-              <FilterTab 
-                active={activeFilter === 'all'} 
-                onClick={() => setActiveFilter('all')}
-              >
-                {t('work.filters.all')}
-              </FilterTab>
-              <FilterTab 
-                active={activeFilter === 'web'} 
-                onClick={() => setActiveFilter('web')}
-              >
-                {t('work.filters.web')}
-              </FilterTab>
-              <FilterTab 
-                active={activeFilter === 'mobile'} 
-                onClick={() => setActiveFilter('mobile')}
-              >
-                {t('work.filters.mobile')}
-              </FilterTab>
-              <FilterTab 
-                active={activeFilter === 'design'} 
-                onClick={() => setActiveFilter('design')}
-              >
-                {t('work.filters.design')}
-              </FilterTab>
-            </FilterTabs>
+              <FilterTabs>
+                <FilterTab 
+                  active={activeFilter === 'all'} 
+                  onClick={() => setActiveFilter('all')}
+                >
+                  {t('work.filters.all')}
+                </FilterTab>
+                <FilterTab 
+                  active={activeFilter === 'web'} 
+                  onClick={() => setActiveFilter('web')}
+                >
+                  {t('work.filters.web')}
+                </FilterTab>
+                <FilterTab 
+                  active={activeFilter === 'mobile'} 
+                  onClick={() => setActiveFilter('mobile')}
+                >
+                  {t('work.filters.mobile')}
+                </FilterTab>
+                <FilterTab 
+                  active={activeFilter === 'design'} 
+                  onClick={() => setActiveFilter('design')}
+                >
+                  {t('work.filters.design')}
+                </FilterTab>
+              </FilterTabs>
 
-            <ProjectsGrid>
-              {filteredProjects.map((project, idx) => (
-                <ProjectCard key={project.id} $delay={idx * 0.12}>
-                  <ProjectImage bgColor={project.bgColor} $hasImage={!!project.image}>
-                    {project.image && <img src={project.image} alt={project.title} />}
-                    <div className="project-placeholder">
-                      {project.title}
-                    </div>
-                  </ProjectImage>
-                  <ProjectContent>
-                    <ProjectTitle>{project.title}</ProjectTitle>
-                    <ProjectDescription>{project.description}</ProjectDescription>
-                    <ProjectTags>
-                      {project.tags.map((tag: string, index: number) => (
-                        <ProjectTag key={index}>{tag}</ProjectTag>
-                      ))}
-                    </ProjectTags>
-                    <ProjectActions>
-                      <ProjectButton href={project.liveUrl}>
-                        <EyeIcon size={14} />
-                        {t('work.buttons.liveDemo')}
-                      </ProjectButton>
-                      <ProjectButton href={project.githubUrl}>
-                        <GithubIcon size={14} />
-                        {t('work.buttons.code')}
-                      </ProjectButton>
-                    </ProjectActions>
-                  </ProjectContent>
-                </ProjectCard>
-              ))}
-            </ProjectsGrid>
-          </WorkContainerInner>
-        </WorkSection>
+              <ProjectsGrid>
+                {filteredProjects.map((project, idx) => (
+                  <ProjectCard key={project.id} $delay={idx * 0.12}>
+                    <ProjectImage bgColor={project.bgColor} $hasImage={!!project.image}>
+                      {project.image && <img src={project.image} alt={project.title} />}
+                      <div className="project-placeholder">
+                        {project.title}
+                      </div>
+                    </ProjectImage>
+                    <ProjectContent>
+                      <ProjectTitle>{project.title}</ProjectTitle>
+                      <ProjectDescription>{project.description}</ProjectDescription>
+                      <ProjectTags>
+                        {project.tags.map((tag: string, index: number) => (
+                          <ProjectTag key={index}>{tag}</ProjectTag>
+                        ))}
+                      </ProjectTags>
+                      <ProjectActions>
+                        <ProjectButton href={project.liveUrl}>
+                          <EyeIcon size={14} />
+                          {t('work.buttons.liveDemo')}
+                        </ProjectButton>
+                        <ProjectButton href={project.githubUrl}>
+                          <GithubIcon size={14} />
+                          {t('work.buttons.code')}
+                        </ProjectButton>
+                      </ProjectActions>
+                    </ProjectContent>
+                  </ProjectCard>
+                ))}
+              </ProjectsGrid>
+            </WorkContainerInner>
+          </WorkSection>
 
-        <VideoMotionSection>
-          <VideoMotionContainer>
-            <VideoMotionHeader>
-              <h2>Video Motion</h2>
-              <p>Explore our dynamic motion graphics and video animations that bring brands to life with engaging visual storytelling.</p>
-            </VideoMotionHeader>
-            
-            <VideoMotionGrid>
-              {videoMotionData.map((video) => (
-                <VideoMotionCard key={video.id}>
-                  <VideoMotionVideo>
-                    {video.video.includes('facebook.com/plugins/video.php') ? (
-                      <iframe
-                        src={video.video}
-                        title={video.title}
-                        width="100%"
-                        height="100%"
-                        style={{ border: 'none', overflow: 'hidden' }}
-                        scrolling="no"
-                        frameBorder="0"
-                        allowFullScreen={true}
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      />
-                    ) : video.video.startsWith('http') ? (
-                      <iframe
-                        src={video.video}
-                        title={video.title}
-                        width="100%"
-                        height="100%"
-                        frameBorder="0"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <video 
-                        src={video.video} 
-                        poster={video.thumbnail}
-                        muted
-                        loop
-                      />
-                    )}
-                    <div className="play-button">▶</div>
-                  </VideoMotionVideo>
-                  <VideoMotionContent>
-                    <VideoMotionTitle>{video.title}</VideoMotionTitle>
-                    <VideoMotionDescription>{video.description}</VideoMotionDescription>
-                    <VideoMotionTags>
-                      {video.tags.map((tag, index) => (
-                        <VideoMotionTag key={index}>{tag}</VideoMotionTag>
-                      ))}
-                    </VideoMotionTags>
-                    <VideoMotionActions>
-                      <VideoMotionButton 
-                        href={video.video} 
-                        target="_blank"
-                      >
-                        Watch Full Video
-                      </VideoMotionButton>
-                      <VideoMotionButton 
-                        href="https://wa.me/+8562059991574" 
-                        target="_blank"
-                      >
-                        Discuss Project
-                      </VideoMotionButton>
-                    </VideoMotionActions>
-                  </VideoMotionContent>
-                </VideoMotionCard>
-              ))}
-            </VideoMotionGrid>
-            
-            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-              <VideoMotionButton 
-                href="https://www.facebook.com/profile.php?id=61559057724990&sk=reels_tab" 
-                target="_blank"
-                style={{ 
-                  maxWidth: '200px', 
-                  margin: '0 auto',
-                  fontSize: '1rem',
-                  padding: '1rem 1rem'
-                }}
-              >
-                View More
-              </VideoMotionButton>
-            </div>
-          </VideoMotionContainer>
-        </VideoMotionSection>
-        <Footer />
-      </ContentWrapper>
-    </WorkContainer>
+          <VideoMotionSection>
+            <VideoMotionContainer>
+              <VideoMotionHeader>
+                <h2>Video Motion</h2>
+                <p>Explore our dynamic motion graphics and video animations that bring brands to life with engaging visual storytelling.</p>
+              </VideoMotionHeader>
+              
+              <VideoMotionGrid>
+                {videoMotionData.map((video) => (
+                  <VideoMotionCard key={video.id}>
+                    <VideoMotionVideo>
+                      {video.video.includes('facebook.com/plugins/video.php') ? (
+                        <iframe
+                          src={video.video}
+                          title={video.title}
+                          width="100%"
+                          height="100%"
+                          style={{ border: 'none', overflow: 'hidden' }}
+                          scrolling="no"
+                          frameBorder="0"
+                          allowFullScreen={true}
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                        />
+                      ) : video.video.startsWith('http') ? (
+                        <iframe
+                          src={video.video}
+                          title={video.title}
+                          width="100%"
+                          height="100%"
+                          frameBorder="0"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <video 
+                          src={video.video} 
+                          poster={video.thumbnail}
+                          muted
+                          loop
+                        />
+                      )}
+                      <div className="play-button">▶</div>
+                    </VideoMotionVideo>
+                    <VideoMotionContent>
+                      <VideoMotionTitle>{video.title}</VideoMotionTitle>
+                      <VideoMotionDescription>{video.description}</VideoMotionDescription>
+                      <VideoMotionTags>
+                        {video.tags.map((tag, index) => (
+                          <VideoMotionTag key={index}>{tag}</VideoMotionTag>
+                        ))}
+                      </VideoMotionTags>
+                      <VideoMotionActions>
+                        <VideoMotionButton 
+                          href={video.video} 
+                          target="_blank"
+                        >
+                          Watch Full Video
+                        </VideoMotionButton>
+                        <VideoMotionButton 
+                          href="https://wa.me/+8562059991574" 
+                          target="_blank"
+                        >
+                          Discuss Project
+                        </VideoMotionButton>
+                      </VideoMotionActions>
+                    </VideoMotionContent>
+                  </VideoMotionCard>
+                ))}
+              </VideoMotionGrid>
+              
+              <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                <VideoMotionButton 
+                  href="https://www.facebook.com/profile.php?id=61559057724990&sk=reels_tab" 
+                  target="_blank"
+                  style={{ 
+                    maxWidth: '200px', 
+                    margin: '0 auto',
+                    fontSize: '1rem',
+                    padding: '1rem 1rem'
+                  }}
+                >
+                  View More
+                </VideoMotionButton>
+              </div>
+            </VideoMotionContainer>
+          </VideoMotionSection>
+
+          <PackagingSection>
+            <PackagingContainer>
+              <PackagingHeader>
+                <h2>Packaging Design</h2>
+                <p>Explore our innovative packaging designs that combine functionality with aesthetics, ensuring a memorable brand experience.</p>
+              </PackagingHeader>
+              
+              <PackagingGrid>
+                {packagingData.map((pack) => (
+                  <PackagingCard key={pack.id}>
+                    <PackagingImage>
+                      <img src={pack.image} alt={pack.alt} />
+                    </PackagingImage>
+                  </PackagingCard>
+                ))}
+              </PackagingGrid>
+              
+              <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                <VideoMotionButton 
+                  href="https://www.facebook.com/profile.php?id=61559057724990&sk=reels_tab" 
+                  target="_blank"
+                  style={{ 
+                    maxWidth: '200px', 
+                    margin: '0 auto',
+                    fontSize: '1rem',
+                    padding: '1rem 1rem'
+                  }}
+                >
+                  View More
+                </VideoMotionButton>
+              </div>
+            </PackagingContainer>
+          </PackagingSection>
+          <Footer />
+        </ContentWrapper>
+      </WorkContainer>
+    </>
   );
 };
 

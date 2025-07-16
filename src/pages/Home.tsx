@@ -4,6 +4,7 @@ import { FiArrowRight, FiInstagram, FiDribbble, FiClock, FiHeart, FiMessageCircl
 import { FaBehance, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PageSEO from '../components/PageSEO';
 import { fetchFacebookPosts, BlogPost } from '../services/facebookService';
 import TrueFocus from './TrueFocus';
 import './TrueFocus.css';
@@ -1073,36 +1074,36 @@ const ModalButton = styled.button`
 const showcaseData = [
   {
     id: 1,
-    title: "Brand Identity for Tech Startup",
-    description: "Complete brand identity design including logo, color palette, typography, and visual system for a fast-growing SaaS company. The design focuses on innovation, trust, and scalability.",
+    title: "Brand Identity for Tissue Paper",
+    description: "Complete brand identity design including logo, color palette, typography, and visual for a tissue paper advertisement",
     image: "/photo/cc.jpg",
     category: "Brand Identity",
     duration: "3 weeks",
     tools: ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
-    client: "TechCorp Inc.",
+    client: "Laos Clean Clear.",
     year: "2024"
   },
   {
     id: 2,
-    title: "Animated Explainer Video",
-    description: "Motion graphics and animation project for a product launch campaign. Created engaging visual storytelling that explains complex features in an accessible way.",
+    title: "Brochure Design for Scooter",
+    description: "The brochure should be designed in a way that is easy to understand and use.",
     image: "/photo/gowei.jpg",
-    category: "Motion Graphics",
+    category: "Brochure Design",
     duration: "2 weeks",
     tools: ["After Effects", "Premiere Pro", "Illustrator"],
-    client: "ProductLaunch Co.",
+    client: "Gowei Scooter",
     year: "2024"
   },
   {
     id: 3,
-    title: "Modern Portfolio Website",
-    description: "Responsive web design with interactive elements and smooth transitions. Focused on creating an immersive user experience that showcases creative work effectively.",
+    title: "Signage Design for a Haier",
+    description: "The signage should be designed in Pi MAi Laos a way that is easy to understand and use.",
     image: "/photo/haier.jpg",
-    category: "Web Design",
+    category: "Signage Design",
     duration: "4 weeks",
     tools: ["Figma", "React", "Styled Components"],
-    client: "Creative Studio",
-    year: "2024"
+    client: "Haier",
+    year: "2025"
   }
 ];
 
@@ -1400,6 +1401,7 @@ const MarqueeWrapper = styled.div`
 `;
 
 const Home: React.FC = () => {
+  const { language } = useLanguage();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedShowcase, setSelectedShowcase] = useState<any>(null);
@@ -1485,339 +1487,347 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <HomeContainer>
-      <ChromaGrid />
-      <ContentWrapper>
-        <Navbar />
-        <HeroSection>
-          <HeroContent>
-            <HeroText>
-              <h2>
-                <TrueFocus
-                  sentence={t('hero.title')}
-                  manualMode={false}
-                  blurAmount={5}
-                  borderColor="#67e8f9"
-                  animationDuration={1}
-                  pauseBetweenAnimations={1}
-                />
-              </h2>
-              <p>
-                {t('hero.subtitle')}
-              </p>
-              <CTAButton onClick={scrollToShowcase}>
-                {t('hero.cta')}
-                <ArrowRightIcon />
-              </CTAButton>
-              <SocialLinks>
-                <SocialIcon href="https://www.facebook.com/profile.php?id=61559057724990" target="_blank" aria-label="Facebook">
-                  <FacebookIcon size={20} />
-                </SocialIcon>
-                <SocialIcon href="#" aria-label="Instagram">
-                  <InstagramIcon size={20} />
-                </SocialIcon>
-                <SocialIcon href="https://www.behance.net/ace_likhith1" aria-label="Behance" target="_blank">
-                  <BehanceIcon size={20} />
-                </SocialIcon>
-                <SocialIcon href="/notfound" aria-label="Dribbble">
-                  <DribbbleIcon size={20} target="_blank"/>
-                </SocialIcon>
-                <SocialIcon href="https://wa.me/+8562059991574" aria-label="WhatsApp" target="_blank">
-                  <WhatsAppIcon size={20} />
-                </SocialIcon>
-              </SocialLinks>
-            </HeroText>
-            <HeroImage>
-              <div className="hero-image">
-                <img src="/images/Ace.jpg" alt="Ace" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px' }} />
-              </div>
-            </HeroImage>
-          </HeroContent>
-        </HeroSection>
-
-        <MarqueeSection>
-          <MarqueeWrapper>
-            <MarqueeContainer>
-              <MarqueeLogo>
-                <img src="/cus_logo/jing.png" alt="Jing" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/wulianye.png" alt="Wulianye" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/haier.png" alt="Haier" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/huawei.png" alt="Huawei" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/tecno.png" alt="Tecno" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/gowei.png" alt="Gowei" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/yadea.png" alt="Yadea" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/xinyue.png" alt="Xinyue" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/kingmaker.png" alt="Kingmaker" />
-              </MarqueeLogo>
-              {/* Duplicate logos for seamless scrolling */}
-              <MarqueeLogo>
-                <img src="/cus_logo/jing.png" alt="Jing" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/wulianye.png" alt="Wulianye" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/haier.png" alt="Haier" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/huawei.png" alt="Huawei" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/tecno.png" alt="Tecno" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/gowei.png" alt="Gowei" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/yadea.png" alt="Yadea" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/xinyue.png" alt="Xinyue" />
-              </MarqueeLogo>
-              <MarqueeLogo>
-                <img src="/cus_logo/kingmaker.png" alt="Kingmaker" />
-              </MarqueeLogo>
-            </MarqueeContainer>
-          </MarqueeWrapper>
-        </MarqueeSection>
-
-        <ShowcaseSection id="showcase-section">
-          <ShowcaseContainer>
-            <ShowcaseHeader>
-              <h2>{t('showcase.title')}</h2>
-              <p>{t('showcase.subtitle')}</p>
-            </ShowcaseHeader>
-            <ShowcaseGrid>
-              {showcaseData.map((showcase) => (
-                <ShowcaseCard key={showcase.id} onClick={() => handleShowcaseClick(showcase)} style={{ cursor: 'pointer' }}>
-                  <ShowcaseImage>
-                    <img src={showcase.image} alt={showcase.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
-                  </ShowcaseImage>
-                  <ShowcaseContent>
-                    <ShowcaseTitle>{showcase.title}</ShowcaseTitle>
-                    <ShowcaseDesc>{showcase.description.split('.')[0]}.</ShowcaseDesc>
-                  </ShowcaseContent>
-                </ShowcaseCard>
-              ))}
-            </ShowcaseGrid>
-            <ShowcaseViewMoreButton onClick={() => window.open('https://www.behance.net/ace_likhith1', '_blank')}>
-              View More on Behance
-              <BehanceIcon size={20} />
-            </ShowcaseViewMoreButton>
-          </ShowcaseContainer>
-        </ShowcaseSection>
-
-        {/* Modal */}
-        <ModalOverlay isOpen={isModalOpen} onClick={closeModal}>
-          <ModalContent isOpen={isModalOpen} onClick={(e) => e.stopPropagation()}>
-            {selectedShowcase && (
-              <>
-                <ModalCloseButton onClick={closeModal}>
-                  <CloseIcon size={20} />
-                </ModalCloseButton>
-                <ModalImage onClick={openFullScreen}>
-                  <img src={selectedShowcase.image} alt={selectedShowcase.title} />
-                </ModalImage>
-                <ModalBody>
-                  <ModalTitle>{selectedShowcase.title}</ModalTitle>
-                  <ModalDescription>{selectedShowcase.description}</ModalDescription>
-                  <ModalDetails>
-                    <ModalDetail>
-                      <div className="detail-label">Category</div>
-                      <div className="detail-value">{selectedShowcase.category}</div>
-                    </ModalDetail>
-                    <ModalDetail>
-                      <div className="detail-label">Duration</div>
-                      <div className="detail-value">{selectedShowcase.duration}</div>
-                    </ModalDetail>
-                    <ModalDetail>
-                      <div className="detail-label">Client</div>
-                      <div className="detail-value">{selectedShowcase.client}</div>
-                    </ModalDetail>
-                    <ModalDetail>
-                      <div className="detail-label">Year</div>
-                      <div className="detail-value">{selectedShowcase.year}</div>
-                    </ModalDetail>
-                  </ModalDetails>
-                  <ModalDetails>
-                    <ModalDetail style={{ gridColumn: '1 / -1' }}>
-                      <div className="detail-label">Tools Used</div>
-                      <div className="detail-value">{selectedShowcase.tools.join(', ')}</div>
-                    </ModalDetail>
-                  </ModalDetails>
-                  <ModalActions>
-                    <ModalButton onClick={() => window.open('https://wa.me/+8562059991574', '_blank')}>
-                      Discuss Project
-                    </ModalButton>
-                    <ModalButton onClick={closeModal}>
-                      Close
-                    </ModalButton>
-                  </ModalActions>
-                </ModalBody>
-              </>
-            )}
-          </ModalContent>
-        </ModalOverlay>
-
-        {/* Full Screen Image Modal */}
-        <FullScreenOverlay isOpen={isFullScreenOpen} onClick={closeFullScreen}>
-          <FullScreenImage onClick={(e) => e.stopPropagation()}>
-            {selectedShowcase && (
-              <>
-                <img src={selectedShowcase.image} alt={selectedShowcase.title} />
-                <FullScreenCloseButton onClick={closeFullScreen}>
-                  <CloseIcon size={24} />
-                </FullScreenCloseButton>
-              </>
-            )}
-          </FullScreenImage>
-        </FullScreenOverlay>
-
-        {/* Popup */}
-        <PopupOverlay isOpen={isPopupOpen} onClick={closePopup}>
-          <PopupContent isOpen={isPopupOpen} onClick={(e) => e.stopPropagation()}>
-            <PopupCloseButton onClick={closePopup}>
-              <CloseIcon size={20} />
-            </PopupCloseButton>
-            <PopupImage>
-              <img src="/images/popup.png" alt="Popup" />
-            </PopupImage>
-          </PopupContent>
-        </PopupOverlay>
-
-        <BlogSection>
-          <BlogContainer>
-            <BlogHeaderContainer>
-              <BlogHeader>
-                <h2>{t('blog.title')}</h2>
+    <>
+      <PageSEO
+        title="Home"
+        description="Creative developer and designer portfolio showcasing innovative web projects, 3D experiences, and cutting-edge digital solutions. Expert in React, TypeScript, Three.js, and modern web technologies."
+        keywords="portfolio, creative developer, designer, react, typescript, three.js, web development, 3D experiences, digital solutions"
+        image="/og-home.jpg"
+      />
+      <HomeContainer>
+        <ChromaGrid />
+        <ContentWrapper>
+          <Navbar />
+          <HeroSection>
+            <HeroContent>
+              <HeroText>
+                <h2>
+                  <TrueFocus
+                    sentence={t('hero.title')}
+                    manualMode={false}
+                    blurAmount={5}
+                    borderColor="#67e8f9"
+                    animationDuration={1}
+                    pauseBetweenAnimations={1}
+                  />
+                </h2>
                 <p>
-                  {t('blog.subtitle')} <a href="https://www.facebook.com/profile.php?id=61559057724990" target="_blank" rel="noopener noreferrer" style={{ color: '#667eea', textDecoration: 'none' }}>{t('blog.facebookPage')}</a>
+                  {t('hero.subtitle')}
                 </p>
-              </BlogHeader>
-            </BlogHeaderContainer>
-            
-            {loading ? (
-              <LoadingContainer>
-                {t('blog.loading')}
-              </LoadingContainer>
-            ) : (
-              <>
-                <BlogGrid>
-                  {blogPosts.map((post) => (
-                    <BlogCard key={post.id}>
-                      <BlogImage>
-                        {post.image.startsWith('http') || post.image.startsWith('/') ? (
-                          <img 
-                            src={post.image} 
-                            alt={post.title}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                          />
-                        ) : (
-                          post.image
-                        )}
-                      </BlogImage>
-                      <BlogContent>
-                        <BlogMeta>
-                          <div className="meta-item">
-                            <FacebookIcon size={14} />
-                            {post.author}
-                          </div>
-                          <div className="meta-item">
-                            <ClockIcon size={14} />
-                            {post.date}
-                          </div>
-                        </BlogMeta>
-                        <BlogTitle>{post.title}</BlogTitle>
-                        <BlogExcerpt>{post.excerpt}</BlogExcerpt>
-                        <BlogActions>
-                          <BlogAction>
-                            <HeartIcon size={14} />
-                            {post.likes}
-                          </BlogAction>
-                          <BlogAction>
-                            <MessageIcon size={14} />
-                            {post.comments}
-                          </BlogAction>
-                        </BlogActions>
-                      </BlogContent>
-                    </BlogCard>
-                  ))}
-                </BlogGrid>
-                
-                <div style={{ textAlign: 'center' }}>
-                  <ViewAllButton onClick={() => window.open('https://www.facebook.com/profile.php?id=61559057724990', '_blank')}>
-                    {t('blog.viewAllPosts')}
-                    <FacebookIcon size={18} />
-                  </ViewAllButton>
+                <CTAButton onClick={scrollToShowcase}>
+                  {t('hero.cta')}
+                  <ArrowRightIcon />
+                </CTAButton>
+                <SocialLinks>
+                  <SocialIcon href="https://www.facebook.com/profile.php?id=61559057724990" target="_blank" aria-label="Facebook">
+                    <FacebookIcon size={20} />
+                  </SocialIcon>
+                  <SocialIcon href="#" aria-label="Instagram">
+                    <InstagramIcon size={20} />
+                  </SocialIcon>
+                  <SocialIcon href="https://www.behance.net/ace_likhith1" aria-label="Behance" target="_blank">
+                    <BehanceIcon size={20} />
+                  </SocialIcon>
+                  <SocialIcon href="/notfound" aria-label="Dribbble">
+                    <DribbbleIcon size={20} target="_blank"/>
+                  </SocialIcon>
+                  <SocialIcon href="https://wa.me/+8562059991574" aria-label="WhatsApp" target="_blank">
+                    <WhatsAppIcon size={20} />
+                  </SocialIcon>
+                </SocialLinks>
+              </HeroText>
+              <HeroImage>
+                <div className="hero-image">
+                  <img src="/images/Ace.jpg" alt="Ace" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px' }} />
                 </div>
-              </>
-            )}
-          </BlogContainer>
-        </BlogSection>
+              </HeroImage>
+            </HeroContent>
+          </HeroSection>
 
-        <CustomerReviewSection>
-          <ReviewContainer>
-            <ReviewHeader>
-              <h2>{t('reviews.title')}</h2>
-              <p>{t('reviews.subtitle')}</p>
-            </ReviewHeader>
-            <ReviewGrid>
-              {reviewData.map((review) => (
-                <ReviewCard key={review.id}>
-                  <ReviewContent>
-                    <p>{review.content}</p>
-                  </ReviewContent>
-                  <ReviewRating>
-                    {[...Array(5)].map((_, index) => (
-                      <StarIcon key={index} size={20} />
+          <MarqueeSection>
+            <MarqueeWrapper>
+              <MarqueeContainer>
+                <MarqueeLogo>
+                  <img src="/cus_logo/jing.png" alt="Jing" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/wulianye.png" alt="Wulianye" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/haier.png" alt="Haier" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/huawei.png" alt="Huawei" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/tecno.png" alt="Tecno" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/gowei.png" alt="Gowei" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/yadea.png" alt="Yadea" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/xinyue.png" alt="Xinyue" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/kingmaker.png" alt="Kingmaker" />
+                </MarqueeLogo>
+                {/* Duplicate logos for seamless scrolling */}
+                <MarqueeLogo>
+                  <img src="/cus_logo/jing.png" alt="Jing" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/wulianye.png" alt="Wulianye" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/haier.png" alt="Haier" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/huawei.png" alt="Huawei" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/tecno.png" alt="Tecno" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/gowei.png" alt="Gowei" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/yadea.png" alt="Yadea" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/xinyue.png" alt="Xinyue" />
+                </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/kingmaker.png" alt="Kingmaker" />
+                </MarqueeLogo>
+              </MarqueeContainer>
+            </MarqueeWrapper>
+          </MarqueeSection>
+
+          <ShowcaseSection id="showcase-section">
+            <ShowcaseContainer>
+              <ShowcaseHeader>
+                <h2>{t('showcase.title')}</h2>
+                <p>{t('showcase.subtitle')}</p>
+              </ShowcaseHeader>
+              <ShowcaseGrid>
+                {showcaseData.map((showcase) => (
+                  <ShowcaseCard key={showcase.id} onClick={() => handleShowcaseClick(showcase)} style={{ cursor: 'pointer' }}>
+                    <ShowcaseImage>
+                      <img src={showcase.image} alt={showcase.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+                    </ShowcaseImage>
+                    <ShowcaseContent>
+                      <ShowcaseTitle>{showcase.title}</ShowcaseTitle>
+                      <ShowcaseDesc>{showcase.description.split('.')[0]}.</ShowcaseDesc>
+                    </ShowcaseContent>
+                  </ShowcaseCard>
+                ))}
+              </ShowcaseGrid>
+              <ShowcaseViewMoreButton onClick={() => window.open('https://www.behance.net/ace_likhith1', '_blank')}>
+                View More on Behance
+                <BehanceIcon size={20} />
+              </ShowcaseViewMoreButton>
+            </ShowcaseContainer>
+          </ShowcaseSection>
+
+          {/* Modal */}
+          <ModalOverlay isOpen={isModalOpen} onClick={closeModal}>
+            <ModalContent isOpen={isModalOpen} onClick={(e) => e.stopPropagation()}>
+              {selectedShowcase && (
+                <>
+                  <ModalCloseButton onClick={closeModal}>
+                    <CloseIcon size={20} />
+                  </ModalCloseButton>
+                  <ModalImage onClick={openFullScreen}>
+                    <img src={selectedShowcase.image} alt={selectedShowcase.title} />
+                  </ModalImage>
+                  <ModalBody>
+                    <ModalTitle>{selectedShowcase.title}</ModalTitle>
+                    <ModalDescription>{selectedShowcase.description}</ModalDescription>
+                    <ModalDetails>
+                      <ModalDetail>
+                        <div className="detail-label">Category</div>
+                        <div className="detail-value">{selectedShowcase.category}</div>
+                      </ModalDetail>
+                      <ModalDetail>
+                        <div className="detail-label">Duration</div>
+                        <div className="detail-value">{selectedShowcase.duration}</div>
+                      </ModalDetail>
+                      <ModalDetail>
+                        <div className="detail-label">Client</div>
+                        <div className="detail-value">{selectedShowcase.client}</div>
+                      </ModalDetail>
+                      <ModalDetail>
+                        <div className="detail-label">Year</div>
+                        <div className="detail-value">{selectedShowcase.year}</div>
+                      </ModalDetail>
+                    </ModalDetails>
+                    <ModalDetails>
+                      <ModalDetail style={{ gridColumn: '1 / -1' }}>
+                        <div className="detail-label">Tools Used</div>
+                        <div className="detail-value">{selectedShowcase.tools.join(', ')}</div>
+                      </ModalDetail>
+                    </ModalDetails>
+                    <ModalActions>
+                      <ModalButton onClick={() => window.open('https://wa.me/+8562059991574', '_blank')}>
+                        Discuss Project
+                      </ModalButton>
+                      <ModalButton onClick={closeModal}>
+                        Close
+                      </ModalButton>
+                    </ModalActions>
+                  </ModalBody>
+                </>
+              )}
+            </ModalContent>
+          </ModalOverlay>
+
+          {/* Full Screen Image Modal */}
+          <FullScreenOverlay isOpen={isFullScreenOpen} onClick={closeFullScreen}>
+            <FullScreenImage onClick={(e) => e.stopPropagation()}>
+              {selectedShowcase && (
+                <>
+                  <img src={selectedShowcase.image} alt={selectedShowcase.title} />
+                  <FullScreenCloseButton onClick={closeFullScreen}>
+                    <CloseIcon size={24} />
+                  </FullScreenCloseButton>
+                </>
+              )}
+            </FullScreenImage>
+          </FullScreenOverlay>
+
+          {/* Popup */}
+          <PopupOverlay isOpen={isPopupOpen} onClick={closePopup}>
+            <PopupContent isOpen={isPopupOpen} onClick={(e) => e.stopPropagation()}>
+              <PopupCloseButton onClick={closePopup}>
+                <CloseIcon size={20} />
+              </PopupCloseButton>
+              <PopupImage>
+                <img src="/images/popup.png" alt="Popup" />
+              </PopupImage>
+            </PopupContent>
+          </PopupOverlay>
+
+          <BlogSection>
+            <BlogContainer>
+              <BlogHeaderContainer>
+                <BlogHeader>
+                  <h2>{t('blog.title')}</h2>
+                  <p>
+                    {t('blog.subtitle')} <a href="https://www.facebook.com/profile.php?id=61559057724990" target="_blank" rel="noopener noreferrer" style={{ color: '#667eea', textDecoration: 'none' }}>{t('blog.facebookPage')}</a>
+                  </p>
+                </BlogHeader>
+              </BlogHeaderContainer>
+              
+              {loading ? (
+                <LoadingContainer>
+                  {t('blog.loading')}
+                </LoadingContainer>
+              ) : (
+                <>
+                  <BlogGrid>
+                    {blogPosts.map((post) => (
+                      <BlogCard key={post.id}>
+                        <BlogImage>
+                          {post.image.startsWith('http') || post.image.startsWith('/') ? (
+                            <img 
+                              src={post.image} 
+                              alt={post.title}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                          ) : (
+                            post.image
+                          )}
+                        </BlogImage>
+                        <BlogContent>
+                          <BlogMeta>
+                            <div className="meta-item">
+                              <FacebookIcon size={14} />
+                              {post.author}
+                            </div>
+                            <div className="meta-item">
+                              <ClockIcon size={14} />
+                              {post.date}
+                            </div>
+                          </BlogMeta>
+                          <BlogTitle>{post.title}</BlogTitle>
+                          <BlogExcerpt>{post.excerpt}</BlogExcerpt>
+                          <BlogActions>
+                            <BlogAction>
+                              <HeartIcon size={14} />
+                              {post.likes}
+                            </BlogAction>
+                            <BlogAction>
+                              <MessageIcon size={14} />
+                              {post.comments}
+                            </BlogAction>
+                          </BlogActions>
+                        </BlogContent>
+                      </BlogCard>
                     ))}
-                  </ReviewRating>
-                  <ReviewAuthor>
-                    <AuthorAvatar>{review.avatar}</AuthorAvatar>
-                    <AuthorInfo>
-                      <h4>{review.author}</h4>
-                      <p>{review.position}</p>
-                    </AuthorInfo>
-                  </ReviewAuthor>
-                </ReviewCard>
-              ))}
-            </ReviewGrid>
-            <ReviewStats>
-              <ReviewStatItem>
-                <div className="stat-number">50+</div>
-                <div className="stat-label">{t('reviews.stats.projectsCompleted')}</div>
-              </ReviewStatItem>
-              <ReviewStatItem>
-                <div className="stat-number">98%</div>
-                <div className="stat-label">{t('reviews.stats.clientSatisfaction')}</div>
-              </ReviewStatItem>
-              <ReviewStatItem>
-                <div className="stat-number">100+</div>
-                <div className="stat-label">{t('reviews.stats.happyClients')}</div>
-              </ReviewStatItem>
-            </ReviewStats>
-          </ReviewContainer>
-        </CustomerReviewSection>
+                  </BlogGrid>
+                  
+                  <div style={{ textAlign: 'center' }}>
+                    <ViewAllButton onClick={() => window.open('https://www.facebook.com/profile.php?id=61559057724990', '_blank')}>
+                      {t('blog.viewAllPosts')}
+                      <FacebookIcon size={18} />
+                    </ViewAllButton>
+                  </div>
+                </>
+              )}
+            </BlogContainer>
+          </BlogSection>
 
-        <Footer />
-      </ContentWrapper>
-    </HomeContainer>
+          <CustomerReviewSection>
+            <ReviewContainer>
+              <ReviewHeader>
+                <h2>{t('reviews.title')}</h2>
+                <p>{t('reviews.subtitle')}</p>
+              </ReviewHeader>
+              <ReviewGrid>
+                {reviewData.map((review) => (
+                  <ReviewCard key={review.id}>
+                    <ReviewContent>
+                      <p>{review.content}</p>
+                    </ReviewContent>
+                    <ReviewRating>
+                      {[...Array(5)].map((_, index) => (
+                        <StarIcon key={index} size={20} />
+                      ))}
+                    </ReviewRating>
+                    <ReviewAuthor>
+                      <AuthorAvatar>{review.avatar}</AuthorAvatar>
+                      <AuthorInfo>
+                        <h4>{review.author}</h4>
+                        <p>{review.position}</p>
+                      </AuthorInfo>
+                    </ReviewAuthor>
+                  </ReviewCard>
+                ))}
+              </ReviewGrid>
+              <ReviewStats>
+                <ReviewStatItem>
+                  <div className="stat-number">50+</div>
+                  <div className="stat-label">{t('reviews.stats.projectsCompleted')}</div>
+                </ReviewStatItem>
+                <ReviewStatItem>
+                  <div className="stat-number">98%</div>
+                  <div className="stat-label">{t('reviews.stats.clientSatisfaction')}</div>
+                </ReviewStatItem>
+                <ReviewStatItem>
+                  <div className="stat-number">100+</div>
+                  <div className="stat-label">{t('reviews.stats.happyClients')}</div>
+                </ReviewStatItem>
+              </ReviewStats>
+            </ReviewContainer>
+          </CustomerReviewSection>
+
+          <Footer />
+        </ContentWrapper>
+      </HomeContainer>
+    </>
   );
 };
 

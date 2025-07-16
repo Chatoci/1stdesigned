@@ -5,6 +5,7 @@ import { SiAdobephotoshop, SiAdobeillustrator, SiAdobeindesign, SiAdobepremierep
 import { MdTextFields } from 'react-icons/md';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PageSEO from '../components/PageSEO';
 import { motion } from 'framer-motion';
 
 // Type cast icons
@@ -420,120 +421,128 @@ const About: React.FC = () => {
   ];
 
   return (
-    <AboutContainer>
-      <ChromaGrid />
-      <ContentWrapper>
-        <Navbar />
-        <AboutSection>
-          <AboutContainerInner>
-            <AboutHeader>
-              <h1>About Me</h1>
-              <p>
-                Passionate designer and developer with a love for creating meaningful digital experiences. 
-                I combine technical expertise with creative vision to build solutions that make a difference.
-              </p>
-            </AboutHeader>
+    <>
+      <PageSEO
+        title="About"
+        description="Learn more about my background, skills, and experience in creative development and design. Discover my journey, expertise in React, TypeScript, Three.js, and passion for innovative digital solutions."
+        keywords="about, developer background, design experience, skills, portfolio, creative developer, react developer, typescript, three.js"
+        image="/og-about.jpg"
+      />
+      <AboutContainer>
+        <ChromaGrid />
+        <ContentWrapper>
+          <Navbar />
+          <AboutSection>
+            <AboutContainerInner>
+              <AboutHeader>
+                <h1>About Me</h1>
+                <p>
+                  Passionate designer and developer with a love for creating meaningful digital experiences. 
+                  I combine technical expertise with creative vision to build solutions that make a difference.
+                </p>
+              </AboutHeader>
 
-            <ProfileGrid>
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                style={{ height: '100%' }}
-              >
-                <ProfileCard>
-                  <ProfileImage>
-                    <img src="/images/profile.jpg" alt="Profile" />
-                  </ProfileImage>
-                  <ProfileName>Ace Likhith</ProfileName>
-                  <ProfileTitle>Graphic Designer</ProfileTitle>
-                  
-                  <ContactInfo>
-                    <ContactItem>
-                      <MailIcon size={16} />
-                      al6091377@email.com
-                    </ContactItem>
-                    <ContactItem>
-                      <PhoneIcon size={16} />
-                      +856 (20) 7831-4914
-                    </ContactItem>
-                    <ContactItem>
-                      <MapPinIcon size={16} />
-                      Laos, Vientiane, Dongdok
-                    </ContactItem>
-                  </ContactInfo>
+              <ProfileGrid>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.1 }}
+                  style={{ height: '100%' }}
+                >
+                  <ProfileCard>
+                    <ProfileImage>
+                      <img src="/images/profile.jpg" alt="Profile" />
+                    </ProfileImage>
+                    <ProfileName>Ace Likhith</ProfileName>
+                    <ProfileTitle>Graphic Designer</ProfileTitle>
+                    
+                    <ContactInfo>
+                      <ContactItem>
+                        <MailIcon size={16} />
+                        al6091377@email.com
+                      </ContactItem>
+                      <ContactItem>
+                        <PhoneIcon size={16} />
+                        +856 (20) 7831-4914
+                      </ContactItem>
+                      <ContactItem>
+                        <MapPinIcon size={16} />
+                        Laos, Vientiane, Dongdok
+                      </ContactItem>
+                    </ContactInfo>
 
-                  <SocialLinks>
-                    <SocialIcon href="https://github.com/Chatoci" aria-label="GitHub" target="_blank">
-                      <GithubIcon size={18} />
-                    </SocialIcon>
-                    <SocialIcon href="#" aria-label="LinkedIn">
-                      <LinkedInIcon size={18} />
-                    </SocialIcon>
-                    <SocialIcon href="#" aria-label="Twitter">
-                      <TwitterIcon size={18} />
-                    </SocialIcon>
-                  </SocialLinks>
-                </ProfileCard>
-              </motion.div>
+                    <SocialLinks>
+                      <SocialIcon href="https://github.com/Chatoci" aria-label="GitHub" target="_blank">
+                        <GithubIcon size={18} />
+                      </SocialIcon>
+                      <SocialIcon href="#" aria-label="LinkedIn">
+                        <LinkedInIcon size={18} />
+                      </SocialIcon>
+                      <SocialIcon href="#" aria-label="Twitter">
+                        <TwitterIcon size={18} />
+                      </SocialIcon>
+                    </SocialLinks>
+                  </ProfileCard>
+                </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                style={{ height: '100%' }}
-              >
-                <AboutContent>
-                  <AboutText>
-                    <h3>My Story</h3>
-                    <p>
-                      My journey as a graphic designer began with a passion for visual storytelling and creativity. Over the years, I have honed my skills in Adobe Creative Suite, Figma, and other design tools to craft compelling visuals that communicate ideas and inspire audiences.
-                    </p>
-                    <p>
-                      I specialize in branding, digital illustrations, and layout design for both print and digital media. I believe that great design is not just about aesthetics, but also about solving problems and making a lasting impact. Every project is an opportunity to blend creativity with strategy, delivering results that exceed expectations.
-                    </p>
-                  </AboutText>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.3 }}
+                  style={{ height: '100%' }}
+                >
+                  <AboutContent>
+                    <AboutText>
+                      <h3>My Story</h3>
+                      <p>
+                        My journey as a graphic designer began with a passion for visual storytelling and creativity. Over the years, I have honed my skills in Adobe Creative Suite, Figma, and other design tools to craft compelling visuals that communicate ideas and inspire audiences.
+                      </p>
+                      <p>
+                        I specialize in branding, digital illustrations, and layout design for both print and digital media. I believe that great design is not just about aesthetics, but also about solving problems and making a lasting impact. Every project is an opportunity to blend creativity with strategy, delivering results that exceed expectations.
+                      </p>
+                    </AboutText>
 
-                  <SkillsSection>
-                    <h3>Skills & Expertise</h3>
-                    <SkillsGrid>
-                      {skills.map((skill, index) => {
-                        const Icon = skill.icon;
-                        const levelText = skill.name === "Adobe Photoshop" ? "Advance" : "Normal";
-                        return (
-                          <SkillItem key={index}>
-                            <div className="skill-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                              {Icon && <Icon size={20} style={{ flexShrink: 0 }} />}
-                              {skill.name}
-                            </div>
-                            <div className="skill-level">{levelText}</div>
-                          </SkillItem>
-                        );
-                      })}
-                    </SkillsGrid>
-                  </SkillsSection>
+                    <SkillsSection>
+                      <h3>Skills & Expertise</h3>
+                      <SkillsGrid>
+                        {skills.map((skill, index) => {
+                          const Icon = skill.icon;
+                          const levelText = skill.name === "Adobe Photoshop" ? "Advance" : "Normal";
+                          return (
+                            <SkillItem key={index}>
+                              <div className="skill-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                {Icon && <Icon size={20} style={{ flexShrink: 0 }} />}
+                                {skill.name}
+                              </div>
+                              <div className="skill-level">{levelText}</div>
+                            </SkillItem>
+                          );
+                        })}
+                      </SkillsGrid>
+                    </SkillsSection>
 
-                  <ExperienceSection>
-                    <h3>Experience</h3>
-                    {experience.map((exp, index) => (
-                      <ExperienceItem key={index}>
-                        <div className="experience-title">{exp.title}</div>
-                        <div className="experience-company">{exp.company}</div>
-                        <div className="experience-date">{exp.date}</div>
-                        <div className="experience-description">{exp.description}</div>
-                      </ExperienceItem>
-                    ))}
-                  </ExperienceSection>
-                </AboutContent>
-              </motion.div>
-            </ProfileGrid>
-          </AboutContainerInner>
-        </AboutSection>
+                    <ExperienceSection>
+                      <h3>Experience</h3>
+                      {experience.map((exp, index) => (
+                        <ExperienceItem key={index}>
+                          <div className="experience-title">{exp.title}</div>
+                          <div className="experience-company">{exp.company}</div>
+                          <div className="experience-date">{exp.date}</div>
+                          <div className="experience-description">{exp.description}</div>
+                        </ExperienceItem>
+                      ))}
+                    </ExperienceSection>
+                  </AboutContent>
+                </motion.div>
+              </ProfileGrid>
+            </AboutContainerInner>
+          </AboutSection>
 
-        
-        <Footer />
-      </ContentWrapper>
-    </AboutContainer>
+          
+          <Footer />
+        </ContentWrapper>
+      </AboutContainer>
+    </>
   );
 };
 

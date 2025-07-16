@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import { FiCode, FiSmartphone, FiVideo, FiTrendingUp, FiUsers, FiCheck } from 'react-icons/fi';
+import { SiAdobephotoshop, SiAdobeillustrator, SiAdobeindesign, SiAdobepremierepro, SiAdobeaftereffects, SiFigma } from 'react-icons/si';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PageSEO from '../components/PageSEO';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+
+// Keyframes
+const fadeInUp = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 // Styled Components
 const ServicesContainer = styled.div`
@@ -145,12 +161,18 @@ const StepperSteps = styled.div`
   }
 `;
 
-const StepperStep = styled.div<{ $active?: boolean }>`
+const StepperStep = styled.div<{ $active?: boolean; $delay?: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: ${fadeInUp} 0.6s ease-out forwards;
+  ${props => props.$delay !== undefined && css`
+    animation-delay: ${props.$delay}s;
+  `}
   
   @media (max-width: 768px) {
     flex-direction: row;
@@ -159,7 +181,7 @@ const StepperStep = styled.div<{ $active?: boolean }>`
   }
 `;
 
-const StepCircle = styled.div<{ $active?: boolean }>`
+const StepCircle = styled.div<{ $active?: boolean; $delay?: number }>`
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -172,7 +194,9 @@ const StepCircle = styled.div<{ $active?: boolean }>`
   font-size: 1.2rem;
   color: ${props => props.$active ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'};
   margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
+  transform: ${props => props.$active ? 'scale(1.1)' : 'scale(1)'};
+  box-shadow: ${props => props.$active ? '0 0 20px rgba(102, 126, 234, 0.4)' : 'none'};
   
   @media (max-width: 768px) {
     width: 50px;
@@ -182,8 +206,14 @@ const StepCircle = styled.div<{ $active?: boolean }>`
   }
 `;
 
-const StepContent = styled.div`
+const StepContent = styled.div<{ $delay?: number }>`
   text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: ${fadeInUp} 0.6s ease-out forwards;
+  ${props => props.$delay !== undefined && css`
+    animation-delay: ${props.$delay + 0.2}s;
+  `}
   
   @media (max-width: 768px) {
     text-align: left;
@@ -196,6 +226,7 @@ const StepTitle = styled.h3<{ $active?: boolean }>`
   font-weight: 600;
   color: ${props => props.$active ? '#ffffff' : 'rgba(255, 255, 255, 0.8)'};
   margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
   
   @media (max-width: 768px) {
     font-size: 0.9rem;
@@ -206,6 +237,7 @@ const StepDescription = styled.p<{ $active?: boolean }>`
   font-size: 0.85rem;
   color: ${props => props.$active ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.6)'};
   margin: 0;
+  transition: all 0.3s ease;
   
   @media (max-width: 768px) {
     font-size: 0.8rem;
@@ -224,17 +256,6 @@ const PricingGrid = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-`;
-
-const fadeInUp = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
   }
 `;
 
@@ -374,6 +395,46 @@ const MoreDetailsButton = styled(PricingButton)`
 
 const Services: React.FC = () => {
   const { t, translations } = useLanguage();
+  const [activeStep, setActiveStep] = useState(1);
+
+  // Animate stepper steps
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep(prev => {
+        if (prev < 4) {
+          return prev + 1;
+        } else {
+          clearInterval(timer);
+          return prev;
+        }
+      });
+    }, 1000); // Change step every 1 second
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const stepperSteps = [
+    {
+      step: 1,
+      title: t('services.stepper.step1.title'),
+      description: t('services.stepper.step1.description')
+    },
+    {
+      step: 2,
+      title: t('services.stepper.step2.title'),
+      description: t('services.stepper.step2.description')
+    },
+    {
+      step: 3,
+      title: t('services.stepper.step3.title'),
+      description: t('services.stepper.step3.description')
+    },
+    {
+      step: 4,
+      title: t('services.stepper.step4.title'),
+      description: t('services.stepper.step4.description')
+    }
+  ];
 
   const pricingPlans = [
     {
@@ -416,76 +477,78 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <ServicesContainer>
-      <ChromaGrid />
-      <ContentWrapper>
-        <Navbar />
-        <ServicesSection>
-          <ServicesContainerInner>
-            <ServicesHeader>
-              <h1>{t('services.title')}</h1>
-              <p>{t('services.subtitle')}</p>
-            </ServicesHeader>
+    <>
+      <PageSEO
+        title="Services"
+        description="Comprehensive web development, design, and creative services. From custom React applications to 3D experiences, branding, and video production. Professional solutions tailored to your needs."
+        keywords="web development services, design services, react development, 3D experiences, branding, video production, creative services, custom applications"
+        image="/og-services.jpg"
+      />
+      <ServicesContainer>
+        <ChromaGrid />
+        <ContentWrapper>
+          <Navbar />
+          <ServicesSection>
+            <ServicesContainerInner>
+              <ServicesHeader>
+                <h1>{t('services.title')}</h1>
+                <p>{t('services.subtitle')}</p>
+              </ServicesHeader>
 
-            <StepperContainer>
-              <StepperTitle>{t('services.stepper.title')}</StepperTitle>
-              <StepperSteps>
-                <StepperStep>
-                  <StepCircle $active={true}>1</StepCircle>
-                  <StepContent>
-                    <StepTitle $active={true}>{t('services.stepper.step1.title')}</StepTitle>
-                    <StepDescription $active={true}>{t('services.stepper.step1.description')}</StepDescription>
-                  </StepContent>
-                </StepperStep>
-                <StepperStep>
-                  <StepCircle $active={false}>2</StepCircle>
-                  <StepContent>
-                    <StepTitle $active={false}>{t('services.stepper.step2.title')}</StepTitle>
-                    <StepDescription $active={false}>{t('services.stepper.step2.description')}</StepDescription>
-                  </StepContent>
-                </StepperStep>
-                <StepperStep>
-                  <StepCircle $active={false}>3</StepCircle>
-                  <StepContent>
-                    <StepTitle $active={false}>{t('services.stepper.step3.title')}</StepTitle>
-                    <StepDescription $active={false}>{t('services.stepper.step3.description')}</StepDescription>
-                  </StepContent>
-                </StepperStep>
-                <StepperStep>
-                  <StepCircle $active={false}>4</StepCircle>
-                  <StepContent>
-                    <StepTitle $active={false}>{t('services.stepper.step4.title')}</StepTitle>
-                    <StepDescription $active={false}>{t('services.stepper.step4.description')}</StepDescription>
-                  </StepContent>
-                </StepperStep>
-              </StepperSteps>
-            </StepperContainer>
+              <StepperContainer>
+                <StepperTitle>{t('services.stepper.title')}</StepperTitle>
+                <StepperSteps>
+                  {stepperSteps.map((step, index) => (
+                    <StepperStep 
+                      key={step.step} 
+                      $active={activeStep >= step.step}
+                      $delay={index * 0.3}
+                    >
+                      <StepCircle 
+                        $active={activeStep >= step.step}
+                        $delay={index * 0.3}
+                      >
+                        {step.step}
+                      </StepCircle>
+                      <StepContent $delay={index * 0.3}>
+                        <StepTitle $active={activeStep >= step.step}>
+                          {step.title}
+                        </StepTitle>
+                        <StepDescription $active={activeStep >= step.step}>
+                          {step.description}
+                        </StepDescription>
+                      </StepContent>
+                    </StepperStep>
+                  ))}
+                </StepperSteps>
+              </StepperContainer>
 
-            <PricingGrid>
-              {pricingPlans.map((plan, index) => (
-                <PricingCard key={index} $featured={plan.featured} $delay={index * 0.12}>
-                  <PricingTitle>{plan.title}</PricingTitle>
-                  <PricingPrice>
-                    <div className="price">{plan.price}</div>
-                    <div className="period">{plan.period}</div>
-                  </PricingPrice>
-                  <PricingFeatures>
-                    {plan.features.map((feature: string, featureIndex: number) => (
-                      <PricingFeature key={featureIndex}>{feature}</PricingFeature>
-                    ))}
-                  </PricingFeatures>
-                  <ButtonGroup>
-                    <PricingButton href="https://m.me/61559057724990" target="_blank" rel="noopener noreferrer">{t('services.buttons.apply')}</PricingButton>
-                    <MoreDetailsButton href="https://m.me/61559057724990" target="_blank" rel="noopener noreferrer">{t('services.buttons.moreDetails')}</MoreDetailsButton>
-                  </ButtonGroup>
-                </PricingCard>
-              ))}
-            </PricingGrid>
-          </ServicesContainerInner>
-        </ServicesSection>
-        <Footer />
-      </ContentWrapper>
-    </ServicesContainer>
+              <PricingGrid>
+                {pricingPlans.map((plan, index) => (
+                  <PricingCard key={index} $featured={plan.featured} $delay={index * 0.12}>
+                    <PricingTitle>{plan.title}</PricingTitle>
+                    <PricingPrice>
+                      <div className="price">{plan.price}</div>
+                      <div className="period">{plan.period}</div>
+                    </PricingPrice>
+                    <PricingFeatures>
+                      {plan.features.map((feature: string, featureIndex: number) => (
+                        <PricingFeature key={featureIndex}>{feature}</PricingFeature>
+                      ))}
+                    </PricingFeatures>
+                    <ButtonGroup>
+                      <PricingButton href="https://m.me/61559057724990" target="_blank" rel="noopener noreferrer">{t('services.buttons.apply')}</PricingButton>
+                      <MoreDetailsButton href="https://m.me/61559057724990" target="_blank" rel="noopener noreferrer">{t('services.buttons.moreDetails')}</MoreDetailsButton>
+                    </ButtonGroup>
+                  </PricingCard>
+                ))}
+              </PricingGrid>
+            </ServicesContainerInner>
+          </ServicesSection>
+          <Footer />
+        </ContentWrapper>
+      </ServicesContainer>
+    </>
   );
 };
 

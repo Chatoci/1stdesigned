@@ -1,46 +1,143 @@
-# Getting Started with Create React App
+# Portfolio - Creative Developer & Designer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive portfolio website built with React, TypeScript, and Three.js. Showcasing creative development, design work, and innovative projects.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### Core Features
+- **Responsive Design** - Optimized for all devices
+- **Multi-language Support** - English and Thai languages
+- **Interactive 3D Elements** - Built with Three.js and React Three Fiber
+- **Smooth Animations** - Powered by Framer Motion
+- **Modern UI/UX** - Clean, professional design
 
-### `npm start`
+### SEO Optimizations
+- **Meta Tags** - Comprehensive SEO meta tags for all pages
+- **Open Graph Tags** - Optimized social media sharing
+- **Twitter Cards** - Enhanced Twitter sharing experience
+- **Structured Data** - JSON-LD schema markup for rich snippets
+- **Sitemap** - XML sitemap for search engine indexing
+- **Robots.txt** - Search engine crawling instructions
+- **PWA Support** - Progressive Web App capabilities
+- **Performance Optimizations** - Preconnect links and optimized loading
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Pages
+- **Home** - Landing page with hero section and featured work
+- **About** - Personal information, skills, and experience
+- **Work** - Portfolio projects and video motion work
+- **Services** - Service offerings and pricing
+- **Contact** - Contact form and communication channels
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠️ Technologies Used
 
-### `npm test`
+- **Frontend**: React 19, TypeScript, Styled Components
+- **3D Graphics**: Three.js, React Three Fiber, React Three Drei
+- **Animations**: Framer Motion
+- **SEO**: React Helmet Async
+- **Icons**: React Icons
+- **Build Tool**: Create React App
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📦 Installation
 
-### `npm run build`
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies:
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Start the development server:
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Build for production:
+```bash
+npm run build
+```
 
-### `npm run eject`
+## 🔧 Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### SEO Configuration
+Update the following files with your information:
+- `src/components/SEO.tsx` - Main SEO component
+- `public/sitemap.xml` - Update URLs and dates
+- `public/robots.txt` - Update sitemap URL
+- `public/site.webmanifest` - PWA configuration
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Customization
+- Update personal information in translation files
+- Replace images in `public/images/` directory
+- Modify color scheme in styled components
+- Add your own projects to the work section
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📱 PWA Features
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The portfolio includes Progressive Web App features:
+- Installable on mobile devices
+- Offline capability (with service worker)
+- App-like experience
+- Custom splash screen
 
-## Learn More
+## 🔍 SEO Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Meta Tags
+- Title and description for each page
+- Open Graph tags for social media
+- Twitter Card optimization
+- Canonical URLs
+- Viewport and theme color settings
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Structured Data
+- Person schema markup
+- Professional information
+- Social media links
+- Skills and expertise
+
+### Performance
+- Preconnect to external domains
+- Optimized image loading
+- Efficient bundle splitting
+- Fast loading times
+
+## 🌐 Deployment
+
+The portfolio is optimized for deployment on various platforms:
+
+### Netlify
+1. Connect your GitHub repository
+2. Set build command: `npm run build`
+3. Set publish directory: `build`
+
+### Vercel
+1. Import your GitHub repository
+2. Framework preset: Create React App
+3. Deploy automatically
+
+### GitHub Pages
+1. Add `homepage` field to package.json
+2. Install gh-pages: `npm install --save-dev gh-pages`
+3. Add deploy script: `npm run deploy`
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Contact
+
+- **Email**: al6091377@email.com
+- **Facebook**: [Ace Likhith](https://www.facebook.com/profile.php?id=61559057724990)
+- **Behance**: [Ace Likhith](https://www.behance.net/ace_likhith1)
+- **WhatsApp**: +856 (20) 7831-4914
+
+---
+
+Built with ❤️ by Ace Likhith

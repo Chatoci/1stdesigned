@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
+import SEO from './components/SEO';
 import Home from './pages/Home';
 import Work from './pages/Work';
 import About from './pages/About';
@@ -20,6 +21,7 @@ function App() {
     <LanguageProvider>
       <Router>
         <AppContainer>
+          <SEO />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />

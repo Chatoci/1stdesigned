@@ -367,6 +367,7 @@ const ShowcaseGrid = styled.div`
 
 const ShowcaseCard = styled.div`
   background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 18px;
   overflow: hidden;
@@ -1401,7 +1402,6 @@ const MarqueeWrapper = styled.div`
 `;
 
 const Home: React.FC = () => {
-  const { language } = useLanguage();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedShowcase, setSelectedShowcase] = useState<any>(null);
@@ -1574,6 +1574,9 @@ const Home: React.FC = () => {
                 <MarqueeLogo>
                   <img src="/cus_logo/kingmaker.png" alt="Kingmaker" />
                 </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/thip.png" alt="Thip" />
+                </MarqueeLogo>
                 {/* Duplicate logos for seamless scrolling */}
                 <MarqueeLogo>
                   <img src="/cus_logo/jing.png" alt="Jing" />
@@ -1602,6 +1605,9 @@ const Home: React.FC = () => {
                 <MarqueeLogo>
                   <img src="/cus_logo/kingmaker.png" alt="Kingmaker" />
                 </MarqueeLogo>
+                <MarqueeLogo>
+                  <img src="/cus_logo/thip.png" alt="Thip" />
+                </MarqueeLogo>
               </MarqueeContainer>
             </MarqueeWrapper>
           </MarqueeSection>
@@ -1616,7 +1622,7 @@ const Home: React.FC = () => {
                 {showcaseData.map((showcase) => (
                   <ShowcaseCard key={showcase.id} onClick={() => handleShowcaseClick(showcase)} style={{ cursor: 'pointer' }}>
                     <ShowcaseImage>
-                      <img src={showcase.image} alt={showcase.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+                      <img src={showcase.image} alt={showcase.title} style={{ width: '100%', height: '100%', objectFit: 'cover'}} />
                     </ShowcaseImage>
                     <ShowcaseContent>
                       <ShowcaseTitle>{showcase.title}</ShowcaseTitle>
@@ -1698,7 +1704,7 @@ const Home: React.FC = () => {
             </FullScreenImage>
           </FullScreenOverlay>
 
-          {/* Popup */}
+          {/* Popup
           <PopupOverlay isOpen={isPopupOpen} onClick={closePopup}>
             <PopupContent isOpen={isPopupOpen} onClick={(e) => e.stopPropagation()}>
               <PopupCloseButton onClick={closePopup}>
@@ -1708,7 +1714,7 @@ const Home: React.FC = () => {
                 <img src="/images/popup.png" alt="Popup" />
               </PopupImage>
             </PopupContent>
-          </PopupOverlay>
+          </PopupOverlay> */}
 
           <BlogSection>
             <BlogContainer>

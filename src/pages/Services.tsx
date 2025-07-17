@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { FiCode, FiSmartphone, FiVideo, FiTrendingUp, FiUsers, FiCheck } from 'react-icons/fi';
-import { SiAdobephotoshop, SiAdobeillustrator, SiAdobeindesign, SiAdobepremierepro, SiAdobeaftereffects, SiFigma } from 'react-icons/si';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PageSEO from '../components/PageSEO';
-import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 
 // Keyframes

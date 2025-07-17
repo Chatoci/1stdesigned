@@ -657,7 +657,6 @@ const PackagingImage = styled.div`
 
 const Work: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [selectedProject, setSelectedProject] = useState<any>(null);
   const { t, translations } = useLanguage();
 
   const projects = [

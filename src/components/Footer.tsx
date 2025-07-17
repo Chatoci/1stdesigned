@@ -66,9 +66,8 @@ const Footer: React.FC = () => {
             © 2024 1stDesigned. All rights reserved.
           </Copyright>
           <FooterBottomLinks>
-            <Link to="/privacy">Privacy Policy</Link>
             <Link to="/terms">Terms of Service</Link>
-            <a href="#sitemap">Sitemap</a>
+            
           </FooterBottomLinks>
         </FooterBottom>
       </FooterContent>

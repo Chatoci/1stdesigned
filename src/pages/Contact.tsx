@@ -5,7 +5,6 @@ import { FaFacebookMessenger } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PageSEO from '../components/PageSEO';
-import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 
 // Type cast icons
@@ -590,8 +589,6 @@ const Contact: React.FC = () => {
     subject: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { t } = useLanguage();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

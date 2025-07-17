@@ -130,8 +130,17 @@ const ProfileCard = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    background: linear-gradient(45deg, transparent 0%, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%, transparent 100%);
     animation: shimmer 3s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) translateY(100%);
+    }
+    100% {
+      transform: translateX(100%) translateY(-100%);
+    }
   }
   
   @media (max-width: 768px) {
@@ -354,6 +363,93 @@ const ExperienceSection = styled.div`
   }
 `;
 
+const ExperienceCategory = styled.div`
+  margin-bottom: 2rem;
+  
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+  }
+`;
+
+const ClientLogosSection = styled.div`
+  margin-bottom: 2rem;
+  
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+  }
+`;
+
+const LogosGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const LogoItem = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 60px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover img {
+    opacity: 1;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    
+    img {
+      max-height: 50px;
+    }
+  }
+`;
+
 const ExperienceItem = styled.div`
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -399,7 +495,7 @@ const About: React.FC = () => {
     { name: "Adobe After Effects", level: 70, icon: SiAdobeaftereffects as React.ComponentType<any> }
   ];
 
-  const experience = [
+  const fulltimeExperience = [
     {
       title: "Graphic Designer",
       company: "Laos Clean Clean",
@@ -411,13 +507,24 @@ const About: React.FC = () => {
       company: "YADEA & GOWEI",
       date: "2022 - 2024",
       description: "Make the product packaging design for the company. Social media post design for the company."
-    },
-    {
-      title: "Graphic Designer",
-      company: "Haier",
-      date: "Freelance",
-      description: "Design poster, social media post, and other design for the company. Signage design for the company."
     }
+  ];
+
+  const freelanceExperience = [
+    // Removed Haier experience
+  ];
+
+  const clientLogos = [
+    { name: "Kingmaker", logo: "/cus_logo/kingmaker.png" },
+    { name: "Xinyue", logo: "/cus_logo/xinyue.png" },
+    { name: "Jing", logo: "/cus_logo/jing.png" },
+    { name: "Wulianye", logo: "/cus_logo/wulianye.png" },
+    { name: "Haier", logo: "/cus_logo/haier.png" },
+    { name: "Huawei", logo: "/cus_logo/huawei.png" },
+    { name: "Tecno", logo: "/cus_logo/tecno.png" },
+    { name: "Gowei", logo: "/cus_logo/gowei.png" },
+    { name: "Yadea", logo: "/cus_logo/yadea.png" },
+    { name: "Thip", logo: "/cus_logo/thip.png" },
   ];
 
   return (
@@ -523,14 +630,46 @@ const About: React.FC = () => {
 
                     <ExperienceSection>
                       <h3>Experience</h3>
-                      {experience.map((exp, index) => (
-                        <ExperienceItem key={index}>
-                          <div className="experience-title">{exp.title}</div>
-                          <div className="experience-company">{exp.company}</div>
-                          <div className="experience-date">{exp.date}</div>
-                          <div className="experience-description">{exp.description}</div>
-                        </ExperienceItem>
-                      ))}
+                      
+                      <ExperienceCategory>
+                        <h4>Full-time Experience</h4>
+                        {fulltimeExperience.map((exp, index) => (
+                          <ExperienceItem key={index}>
+                            <div className="experience-title">{exp.title}</div>
+                            <div className="experience-company">{exp.company}</div>
+                            <div className="experience-date">{exp.date}</div>
+                            <div className="experience-description">{exp.description}</div>
+                          </ExperienceItem>
+                        ))}
+                      </ExperienceCategory>
+
+                      <ExperienceCategory>
+                        <h4>Freelance Experience</h4>
+                        {freelanceExperience.length > 0 ? (
+                          freelanceExperience.map((exp, index) => (
+                            <ExperienceItem key={index}>
+                              <div className="experience-title">{exp.title}</div>
+                              <div className="experience-company">{exp.company}</div>
+                              <div className="experience-date">{exp.date}</div>
+                              <div className="experience-description">{exp.description}</div>
+                            </ExperienceItem>
+                          ))
+                        ) : (
+                          <p style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                            This is my freelance experience for client work.
+                          </p>
+                        )}
+                      </ExperienceCategory>
+
+                      <ClientLogosSection>
+                        <LogosGrid>
+                          {clientLogos.map((client, index) => (
+                            <LogoItem key={index} title={client.name}>
+                              <img src={client.logo} alt={`${client.name} logo`} />
+                            </LogoItem>
+                          ))}
+                        </LogosGrid>
+                      </ClientLogosSection>
                     </ExperienceSection>
                   </AboutContent>
                 </motion.div>

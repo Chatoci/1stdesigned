@@ -194,8 +194,9 @@ const CTAButton = styled.button`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 3rem;
   backdrop-filter: blur(10px);
+  flex: 1;
+  min-width: 200px;
   
   &:hover {
     background: rgba(255, 255, 255, 0.2);
@@ -210,7 +211,8 @@ const CTAButton = styled.button`
     justify-content: center;
     width: 100%;
     max-width: 300px;
-    margin: 0 auto 3rem;
+    margin: 0 auto;
+    flex: none;
   }
 `;
 
@@ -884,93 +886,126 @@ const FullScreenCloseButton = styled.button`
   }
 `;
 
-// Popup Components - REMOVED (unused)
-// const PopupOverlay = styled.div<{ isOpen: boolean }>`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   background: rgba(0, 0, 0, 0.8);
-//   backdrop-filter: blur(8px);
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   z-index: 3000;
-//   opacity: ${props => props.isOpen ? 1 : 0};
-//   visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-//   transition: all 0.3s ease;
-//   padding: 2rem;
-//   
-//   @media (max-width: 768px) {
-//     padding: 1rem;
-//   }
-// `;
+// Popup Components
+const PopupOverlay = styled.div<{ isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: ${props => props.isOpen ? 1 : 0};
+  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+  transition: all 0.3s ease;
+  padding: 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
 
-// const PopupContent = styled.div<{ isOpen: boolean }>`
-//   max-width: 90vw;
-//   max-height: 90vh;
-//   width: 100%;
-//   transform: ${props => props.isOpen ? 'scale(1)' : 'scale(0.9)'};
-//   transition: all 0.3s ease;
-//   position: relative;
-//   overflow: hidden;
-//   
-//   @media (max-width: 768px) {
-//     max-width: 95vw;
-//     max-height: 95vh;
-//     border-radius: 16px;
-//   }
-// `;
+const PopupContent = styled.div<{ isOpen: boolean }>`
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+  transform: ${props => props.isOpen ? 'scale(1)' : 'scale(0.9)'};
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+`;
 
-// const PopupCloseButton = styled.button`
-//   position: absolute;
-//   top: 1rem;
-//   right: 1rem;
-//   background: rgba(0, 0, 0, 0.7);
-//   border: 1px solid rgba(255, 255, 255, 0.2);
-//   border-radius: 50%;
-//   width: 40px;
-//   height: 40px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   color: white;
-//   cursor: pointer;
-//   transition: all 0.2s ease;
-//   z-index: 10;
-//   backdrop-filter: blur(10px);
-//   
-//   &:hover {
-//     background: rgba(0, 0, 0, 0.9);
-//     transform: scale(1.1);
-//   }
-//   
-//   @media (max-width: 768px) {
-//     width: 36px;
-//     height: 36px;
-//   }
-// `;
+const PopupCloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+  }
+`;
 
-// const PopupImage = styled.div`
-//   width: 100%;
-//   height: auto;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   
-//   img {
-//     width: 100%;
-//     height: auto;
-//     max-height: 80vh;
-//     object-fit: contain;
-//     border-radius: 20px;
-//     
-//     @media (max-width: 768px) {
-//       border-radius: 16px;
-//     }
-//   }
-// `;
+const PopupImage = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+    
+    &::after {
+      content: 'Click to visit Facebook';
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 20px;
+    
+    @media (max-width: 768px) {
+      border-radius: 16px;
+    }
+  }
+`;
 
 const ModalBody = styled.div`
   padding: 2rem;
@@ -1407,6 +1442,7 @@ const Home: React.FC = () => {
   const [selectedShowcase, setSelectedShowcase] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFullScreenOpen, setIsFullScreenOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const { t } = useLanguage();
 
   const fetchPosts = async () => {
@@ -1439,6 +1475,14 @@ const Home: React.FC = () => {
     setIsFullScreenOpen(false);
   };
 
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   const scrollToShowcase = () => {
     const showcaseSection = document.getElementById('showcase-section');
     if (showcaseSection) {
@@ -1451,6 +1495,15 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     fetchPosts();
+  }, []);
+
+  // Auto show popup after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPopupOpen(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Customer review data with translations
@@ -1509,10 +1562,16 @@ const Home: React.FC = () => {
                 <p>
                   {t('hero.subtitle')}
                 </p>
-                <CTAButton onClick={scrollToShowcase}>
-                  {t('hero.cta')}
-                  <ArrowRightIcon />
-                </CTAButton>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+                  <CTAButton onClick={scrollToShowcase}>
+                    {t('hero.cta')}
+                    <ArrowRightIcon />
+                  </CTAButton>
+                  <CTAButton onClick={openPopup} style={{ background: 'rgba(103, 232, 249, 0.1)', borderColor: 'rgba(103, 232, 249, 0.3)' }}>
+                    Special Offer
+                    <ArrowRightIcon />
+                  </CTAButton>
+                </div>
                 <SocialLinks>
                   <SocialIcon href="https://www.facebook.com/profile.php?id=61559057724990" target="_blank" aria-label="Facebook">
                     <FacebookIcon size={20} />
@@ -1699,17 +1758,19 @@ const Home: React.FC = () => {
             </FullScreenImage>
           </FullScreenOverlay>
 
-          {/* Popup
+          {/* Popup */}
           <PopupOverlay isOpen={isPopupOpen} onClick={closePopup}>
             <PopupContent isOpen={isPopupOpen} onClick={(e) => e.stopPropagation()}>
               <PopupCloseButton onClick={closePopup}>
                 <CloseIcon size={20} />
               </PopupCloseButton>
               <PopupImage>
-                <img src="/images/popup.png" alt="Popup" />
+                <a href="https://www.facebook.com/profile.php?id=61559057724990" target="_blank" rel="noopener noreferrer">
+                  <img src="/images/popup.jpg" alt="Popup" />
+                </a>
               </PopupImage>
             </PopupContent>
-          </PopupOverlay> */}
+          </PopupOverlay>
 
           <BlogSection>
             <BlogContainer>

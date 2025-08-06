@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { FiGithub, FiEye } from 'react-icons/fi';
-import { FaBehance } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PageSEO from '../components/PageSEO';
@@ -10,7 +9,6 @@ import { useLanguage } from '../contexts/LanguageContext';
 // Type cast icons
 const GithubIcon = FiGithub as React.ComponentType<any>;
 const EyeIcon = FiEye as React.ComponentType<any>;
-const BehanceIcon = FaBehance as React.ComponentType<any>;
 
 // Styled Components
 const WorkContainer = styled.div`

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FiArrowRight, FiInstagram, FiDribbble, FiClock, FiHeart, FiMessageCircle, FiX, FiStar } from 'react-icons/fi';
+import { FiArrowRight, FiInstagram, FiDribbble, FiClock, FiHeart, FiMessageCircle, FiX } from 'react-icons/fi';
 import { FaBehance, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -21,34 +21,8 @@ const ClockIcon = FiClock as React.ComponentType<any>;
 const HeartIcon = FiHeart as React.ComponentType<any>;
 const MessageIcon = FiMessageCircle as React.ComponentType<any>;
 const CloseIcon = FiX as React.ComponentType<any>;
-const StarIcon = FiStar as React.ComponentType<any>;
 
 // Animations
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const pulse = keyframes`
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-`;
-
-const float = keyframes`
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-`;
-
 const marquee = keyframes`
   0% {
     transform: translateX(0);
@@ -1302,34 +1276,6 @@ const Home: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Customer review data with translations
-  const reviewData = [
-    {
-      id: 1,
-      content: t('reviews.reviews.0.content'),
-      rating: 5,
-      author: t('reviews.reviews.0.author'),
-      position: t('reviews.reviews.0.position'),
-      avatar: t('reviews.reviews.0.avatar')
-    },
-    {
-      id: 2,
-      content: t('reviews.reviews.1.content'),
-      rating: 5,
-      author: t('reviews.reviews.1.author'),
-      position: t('reviews.reviews.1.position'),
-      avatar: t('reviews.reviews.1.avatar')
-    },
-    {
-      id: 3,
-      content: t('reviews.reviews.2.content'),
-      rating: 5,
-      author: t('reviews.reviews.2.author'),
-      position: t('reviews.reviews.2.position'),
-      avatar: t('reviews.reviews.2.avatar')
-    }
-  ];
 
   return (
     <>

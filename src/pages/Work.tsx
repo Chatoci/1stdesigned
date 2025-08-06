@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { FiGithub, FiEye } from 'react-icons/fi';
+import { FaBehance } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PageSEO from '../components/PageSEO';
@@ -9,6 +10,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 // Type cast icons
 const GithubIcon = FiGithub as React.ComponentType<any>;
 const EyeIcon = FiEye as React.ComponentType<any>;
+const BehanceIcon = FaBehance as React.ComponentType<any>;
 
 // Styled Components
 const WorkContainer = styled.div`
@@ -668,8 +670,8 @@ const Work: React.FC = () => {
       tags: translations.work.projects.ecommerce.tags,
       bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       image: "/work/ecommerce.png",
-      liveUrl: "#",
-      githubUrl: "#"
+      liveUrl: "https://www.behance.net/ace_likhith1",
+      githubUrl: "https://www.behance.net/ace_likhith1"
     },
     {
       id: 2,
@@ -679,8 +681,8 @@ const Work: React.FC = () => {
       tags: translations.work.projects.banking.tags,
       bgColor: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
       image: "/work/mobile.png",
-      liveUrl: "#",
-      githubUrl: "#"
+      liveUrl: "https://www.behance.net/ace_likhith1",
+      githubUrl: "https://www.behance.net/ace_likhith1"
     },
     {
       id: 3,
@@ -690,8 +692,8 @@ const Work: React.FC = () => {
       tags: translations.work.projects.designSystem.tags,
       bgColor: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
       image: "/work/system.png",
-      liveUrl: "#",
-      githubUrl: "#"
+      liveUrl: "https://www.behance.net/ace_likhith1",
+      githubUrl: "https://www.behance.net/ace_likhith1"
     },
     {
       id: 4,
@@ -701,8 +703,8 @@ const Work: React.FC = () => {
       tags: translations.work.projects.aiChat.tags,
       bgColor: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
       image: "/work/ai.png",
-      liveUrl: "#",
-      githubUrl: "#"
+      liveUrl: "https://www.behance.net/ace_likhith1",
+      githubUrl: "https://www.behance.net/ace_likhith1"
     },
     {
       id: 5,
@@ -712,8 +714,8 @@ const Work: React.FC = () => {
       tags: translations.work.projects.fitness.tags,
       bgColor: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
       image: "/work/fitness.png",
-      liveUrl: "#",
-      githubUrl: "#"
+      liveUrl: "https://www.behance.net/ace_likhith1",
+      githubUrl: "https://www.behance.net/ace_likhith1"
     },
     {
       id: 6,
@@ -723,8 +725,8 @@ const Work: React.FC = () => {
       tags: translations.work.projects.portfolio.tags,
       bgColor: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
       image: "/work/portfolio.png",
-      liveUrl: "#",
-      githubUrl: "#"
+      liveUrl: "https://www.behance.net/ace_likhith1",
+      githubUrl: "https://www.behance.net/ace_likhith1"
     }
   ];
 
@@ -736,11 +738,12 @@ const Work: React.FC = () => {
   const videoMotionData = [
     {
       id: 1,
-      title: "Tissue Motion Graphics",
-      description: "Dynamic motion graphics for tissue product campaign.",
-      video: "/videos/product-launch.mp4",
+      title: "Rise Career",
+      description: "Motion Graphics for Rise Career",
       thumbnail: "/motion/tissue.jpg",
-      tags: ["After Effects", "Motion Graphics", "Product"],
+      video: "/motion/tissue.jpg", // Changed from Facebook video URL to image
+      fullVideoUrl: "https://www.facebook.com/share/v/1EZZ3achyi/", // Facebook video URL for the button
+      tags: ["After Effects", "Motion Graphics", "Product", "Rise Career"],
       duration: "2:30",
       category: "Commercial"
     },
@@ -750,6 +753,7 @@ const Work: React.FC = () => {
       description: "Animated motion graphics for first place achievement.",
       video: "/videos/brand-motion.mp4",
       thumbnail: "/motion/1st.jpg",
+      fullVideoUrl: "https://www.facebook.com/share/v/1ZcBLMzVgq/",
       tags: ["Logo Animation", "Motion Graphics"],
       duration: "1:45",
       category: "Branding"
@@ -760,6 +764,7 @@ const Work: React.FC = () => {
       description: "Professional video motion content and animations.",
       video: "  ",
       thumbnail: "/motion/Vdo.jpg",
+      fullVideoUrl: "https://www.facebook.com/share/v/16ybXZnaMr/",
       tags: ["Video Motion", "Animation", "Professional"],
       duration: "0:30",
       category: "Social"
@@ -864,12 +869,12 @@ const Work: React.FC = () => {
                         ))}
                       </ProjectTags>
                       <ProjectActions>
-                        <ProjectButton href={project.liveUrl}>
-                          <EyeIcon size={14} />
+                        <ProjectButton href={project.liveUrl} target="_blank">
+                          <EyeIcon size={14}  />
                           {t('work.buttons.liveDemo')}
                         </ProjectButton>
-                        <ProjectButton href={project.githubUrl}>
-                          <GithubIcon size={14} />
+                        <ProjectButton href={project.githubUrl} target="_blank">
+                          <GithubIcon size={14}/>
                           {t('work.buttons.code')}
                         </ProjectButton>
                       </ProjectActions>
@@ -912,6 +917,12 @@ const Work: React.FC = () => {
                           frameBorder="0"
                           allowFullScreen
                         />
+                      ) : video.video.endsWith('.jpg') || video.video.endsWith('.png') || video.video.endsWith('.jpeg') ? (
+                        <img 
+                          src={video.video} 
+                          alt={video.title}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
                       ) : (
                         <video 
                           src={video.video} 
@@ -932,7 +943,7 @@ const Work: React.FC = () => {
                       </VideoMotionTags>
                       <VideoMotionActions>
                         <VideoMotionButton 
-                          href={video.video} 
+                          href={video.fullVideoUrl} 
                           target="_blank"
                         >
                           Watch Full Video

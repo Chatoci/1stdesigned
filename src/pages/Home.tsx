@@ -1115,7 +1115,7 @@ const showcaseData = [
     image: "/photo/cc.jpg",
     category: "Brand Identity",
     duration: "3 weeks",
-    tools: ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
     client: "Laos Clean Clear.",
     year: "2024"
   },
@@ -1126,7 +1126,7 @@ const showcaseData = [
     image: "/photo/gowei.jpg",
     category: "Brochure Design",
     duration: "2 weeks",
-    tools: ["After Effects", "Premiere Pro", "Illustrator"],
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
     client: "Gowei Scooter",
     year: "2024"
   },
@@ -1137,7 +1137,7 @@ const showcaseData = [
     image: "/photo/haier.jpg",
     category: "Signage Design",
     duration: "4 weeks",
-    tools: ["Figma", "React", "Styled Components"],
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
     client: "Haier",
     year: "2025"
   }

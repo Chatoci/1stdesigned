@@ -316,7 +316,7 @@ export const lo = {
     },
     buttons: {
       liveDemo: "ສາທິດສົດ",
-      code: "ໂຄດ"
+      code: "ເບີ່ງ"
     }
   },
 

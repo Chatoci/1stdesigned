@@ -313,7 +313,7 @@ export const en = {
     },
     buttons: {
       liveDemo: "Live Demo",
-      code: "Code"
+      code: "Watch"
     }
   },
 

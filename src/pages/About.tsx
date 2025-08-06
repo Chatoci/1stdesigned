@@ -585,7 +585,7 @@ const About: React.FC = () => {
                       <SocialIcon href="#" aria-label="LinkedIn">
                         <LinkedInIcon size={18} />
                       </SocialIcon>
-                      <SocialIcon href="#" aria-label="Twitter">
+                      <SocialIcon href="https://www.behance.net/ace_likhith1" aria-label="Twitter" target="_blank"> 
                         <TwitterIcon size={18} />
                       </SocialIcon>
                     </SocialLinks>

@@ -5,7 +5,6 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import SEO from './components/SEO';
 import Home from './pages/Home';
 import Work from './pages/Work';
-import About from './pages/About';
 import Contact from './pages/Contact';
 import Services from './pages/Services';
 import NotFound from './pages/NotFound';
@@ -25,7 +24,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />
-            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/services" element={<Services />} />
             <Route path="/notfound" element={<NotFound />} />

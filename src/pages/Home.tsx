@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FiArrowRight, FiInstagram, FiDribbble, FiClock, FiHeart, FiMessageCircle, FiX } from 'react-icons/fi';
+import { FiArrowRight, FiInstagram, FiDribbble, FiClock, FiHeart, FiMessageCircle, FiX, FiStar } from 'react-icons/fi';
 import { FaBehance, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -21,6 +21,7 @@ const ClockIcon = FiClock as React.ComponentType<any>;
 const HeartIcon = FiHeart as React.ComponentType<any>;
 const MessageIcon = FiMessageCircle as React.ComponentType<any>;
 const CloseIcon = FiX as React.ComponentType<any>;
+const StarIcon = FiStar as React.ComponentType<any>;
 
 // Animations
 const marquee = keyframes`
@@ -981,6 +982,188 @@ const PopupImage = styled.div`
   }
 `;
 
+// Customer Reviews Section
+const ReviewsSection = styled.section`
+  padding: 6rem 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 4rem 1rem;
+  }
+`;
+
+const ReviewsContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const SectionHeader = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const SectionDescription = styled.p`
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+`;
+
+const ReviewsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const ReviewCard = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+`;
+
+const ReviewHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+`;
+
+const CustomerInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const CustomerAvatar = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const CustomerDetails = styled.div``;
+
+const CustomerName = styled.h4`
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+`;
+
+const CustomerTitle = styled.p`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+`;
+
+const ReviewRating = styled.div`
+  display: flex;
+  gap: 0.25rem;
+`;
+
+const ReviewText = styled.p`
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-style: italic;
+`;
+
+const ReviewDate = styled.p`
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+`;
+
+// Customer reviews data
+const customerReviews = [
+  {
+    id: 1,
+    name: {
+      en: "Sunisa",
+      lo: "ສຸນິສາ"
+    },
+    title: {
+      en: "Content Creator",
+      lo: "ຜູ້ສ້າງເນື້ອຫາ"
+    },
+    rating: 5,
+    review: {
+      en: "Excellent work! The team delivered exactly what we needed on time and within budget.",
+      lo: "ວຽກດີເລີຍເເຫຼະ! ແນະນຳເລີຍສົ່ງວຽກຕົງເວລາ ແລະ ລາຄາດີ."
+    },
+    date: "2025-07-15",
+    avatar: "/reviews/1.jpg"
+  },
+  {
+    id: 2,
+    name: {
+      en: "Chanthala",
+      lo: "ຈັນທະລາ"
+    },
+    title: {
+      en: "Sales Manager",
+      lo: "ຜູ້ຈັດການການຂາຍ"
+    },
+    rating: 5,
+    review: {
+      en: "Professional service and outstanding results. Highly recommended for any design project.",
+      lo: "ບໍລິການດີ ແລະ ອອກເເບບງາມ. ແນະນຳສຳລັບໂປຣເຈັກທີ່ອອກແບບໃດກໍໄດ້."
+    },
+    date: "2025-05-10",
+    avatar: "/reviews/2.jpg"
+  },
+  {
+    id: 3,
+    name: {
+      en: "Aijee",
+      lo: "ໄອຈີ"
+    },
+    title: {
+      en: "Creative",
+      lo: "ຜູ້ສ້າງສັນ"
+    },
+    rating: 5,
+    review: {
+      en: "Creative solutions and great communication throughout the entire project.",
+      lo: "ສຳລັບຄົນທີ່ຢາກສ້າງເວັບໄໍຊຕ໌ ແມ່ນເເນະນຳຄືດີ! ລາຄາເປັນກັນເອງ "
+    },
+    date: "2025-04-05",
+    avatar: "/reviews/3.jpg"
+  }
+];
+
 const ModalBody = styled.div`
   padding: 2rem;
   
@@ -1214,7 +1397,7 @@ const Home: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFullScreenOpen, setIsFullScreenOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const fetchPosts = async () => {
     try {
@@ -1584,6 +1767,48 @@ const Home: React.FC = () => {
               )}
             </BlogContainer>
           </BlogSection>
+          {/* Customer Reviews Section */}
+          <ReviewsSection>
+            <ReviewsContainer>
+              <SectionHeader>
+                <SectionTitle>{t('reviews.title')}</SectionTitle>
+                <SectionDescription>
+                  {t('reviews.subtitle')}
+                </SectionDescription>
+              </SectionHeader>
+              
+              <ReviewsGrid>
+                {customerReviews.map((review) => (
+                  <ReviewCard key={review.id}>
+                    <ReviewHeader>
+                      <CustomerInfo>
+                        <CustomerAvatar>
+                          <img src={review.avatar} alt={review.name[language as keyof typeof review.name]} />
+                        </CustomerAvatar>
+                        <CustomerDetails>
+                          <CustomerName>{review.name[language as keyof typeof review.name]}</CustomerName>
+                          <CustomerTitle>{review.title[language as keyof typeof review.title]}</CustomerTitle>
+                        </CustomerDetails>
+                      </CustomerInfo>
+                      <ReviewRating>
+                        {[...Array(5)].map((_, i) => (
+                          <StarIcon 
+                            key={i} 
+                            size={16} 
+                            style={{ 
+                              color: i < review.rating ? '#ffd700' : 'rgba(255, 255, 255, 0.3)' 
+                            }} 
+                          />
+                        ))}
+                      </ReviewRating>
+                    </ReviewHeader>
+                    <ReviewText>"{review.review[language as keyof typeof review.review]}"</ReviewText>
+                    <ReviewDate>{review.date}</ReviewDate>
+                  </ReviewCard>
+                ))}
+              </ReviewsGrid>
+            </ReviewsContainer>
+          </ReviewsSection>
           <Footer />
         </ContentWrapper>
       </HomeContainer>

@@ -474,7 +474,6 @@ const Navbar: React.FC<NavbarProps> = ({ logoText = "Portfolio" }) => {
               <NavLink to="/" $active={location.pathname === '/'}>{t('nav.home')}</NavLink>
               <NavLink to="/work" $active={location.pathname === '/work'}>{t('nav.work')}</NavLink>
               <NavLink to="/services" $active={location.pathname === '/services'}>{t('nav.services')}</NavLink>
-              <NavLink to="/about" $active={location.pathname === '/about'}>{t('nav.about')}</NavLink>
               <NavLink to="/contact" $active={location.pathname === '/contact'}>{t('nav.contact')}</NavLink>
             </NavLinks>
             <LanguageSwitcher />
